@@ -82,6 +82,7 @@
 <body>
 
 <?php
+session_start();
 
 require_once('dbconfig.php');
 require_once('passwords.php');
@@ -110,12 +111,6 @@ if(isset($_POST['register']))
  {
 	 $gender=1;
  }
- 
- 
- 
-
- 
- 
  
   
 	if(!filter_var($email, FILTER_VALIDATE_EMAIL)) 
@@ -246,6 +241,12 @@ if(isset($_POST['register']))
 		if ($user !== false && password_verify($password, $user['NutzerPW'])) 
 		{
 			$_SESSION['userid'] = $user['NutzerID'];
+			$_SESSION['nutzername']=utf8_encode($user['Nutzername']);
+			$_SESSION['name']=utf8_encode($user['EchterName']);
+			$_SESSION['geschlecht']=utf8_encode($user['Geschlecht']);
+			$_SESSION['email']=utf8_encode($user['Mail']);
+			$_SESSION['status']=utf8_encode($user['Status']);
+			$_SESSION['datum']=$user['RegistriertSeit'];
 			die('Login erfolgreich. Weiter zum <a href="Start.php">internen Bereich</a>');
 		}
 	

@@ -83,6 +83,7 @@
 
 <?PHP
 	
+	session_start();
 
 	
 	require_once('dbconfig.php');
@@ -101,6 +102,12 @@
 		if ($user !== false && password_verify($password, $user['NutzerPW'])) 
 		{
 			$_SESSION['userid'] = $user['NutzerID'];
+			$_SESSION['nutzername']=utf8_encode($user['Nutzername']);
+			$_SESSION['name']=utf8_encode($user['EchterName']);
+			$_SESSION['geschlecht']=utf8_encode($user['Geschlecht']);
+			$_SESSION['email']=utf8_encode($user['Mail']);
+			$_SESSION['status']=utf8_encode($user['Status']);
+			$_SESSION['datum']=$user['RegistriertSeit'];
 			die('Login erfolgreich. Weiter zu <a href="Profil.php">internen Bereich</a>');
 		}
 	

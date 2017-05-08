@@ -61,13 +61,21 @@
   </style>
 <body>
 
+<?PHP
+	
+	session_start();
+	
+	
+
+?>
+
   <header>
     <form style=" float: right; margin-top:5px; margin-right:20px">
       <button type="button" onclick="Start.php"> Logout </button>
     </form>
     <div>
       <h1> Sudoku Online </h1>
-      <p  style="text-align: right; margin-top:-43px; margin-right:100px; font-size:120%"> Hallo Username!</p>
+      <p  style="text-align: right; margin-top:-43px; margin-right:100px; font-size:120%"> Hallo <?php echo $_SESSION['name']; ?> !</p>
     </div>
   </header>
 
@@ -83,29 +91,28 @@
 <!-- Zeigt die Persönlichen Daten des Spielers an -->
   <article style="float:left; margin-left: 10px">
     <h3 style="color:green; font-size:120%"> <ins> Persönliche Daten </ins>
-      <button type="button" style="margin-left: 200px"> bearbeiten </button>
     </h3>
     <section style="color: white; ">
       <table style="width:100%; text-align: left; font-size: 110%">
         <tr>
           <th> Name </th>
-          <td> Christian Kracht </td>
+          <td> <?php echo $_SESSION['name']; ?> </td>
         </tr>
         <tr>
           <th> Username </th>
-          <td> podecuk </td>
+          <td> <?php echo $_SESSION['nutzername']; ?> </td>
         </tr>
         <tr>
           <th> Geschlecht </th>
-          <td> männlich </td>
+          <td> <?php echo $_SESSION['geschlecht']; ?> </td>
         </tr>
         <tr>
           <th> Mail Adresse </th>
-          <td> C.Kracht1@web.de </td>
+          <td> <?php echo $_SESSION['email']; ?> </td>
         </tr>
         <tr>
           <th> Status </th>
-          <td> blabalblalbbalalbblabalblblalab </td>
+          <td> <?php echo $_SESSION['status']; ?> </td>
         </tr>
 
       </table>
@@ -119,7 +126,7 @@
     </h3>
 <!-- Zeigt Elo und Rang des Spielers an -->
     <section style="color: white; font-size:110% ">
-      <p> Du spielst seit 'Datum'. </p>
+      <p> Du spielst seit <?php echo $_SESSION['datum']; ?>. </p>
       <table style="width:100%; text-align:left">
         <tr>
           <th> ELO: </th>
