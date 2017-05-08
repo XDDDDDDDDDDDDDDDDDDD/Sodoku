@@ -81,15 +81,47 @@
   </style>
 <body>
 
+<?PHP
+	
+
+	
+	require_once('dbconfig.php');
+	require_once('passwords.php');
+	
+	if(isset($_POST['login']))
+	{
+		$nutzername = $_POST['uname'];
+		$password = $_POST['password'];
+ 
+		$statement = $pdo->prepare("SELECT * FROM nutzer WHERE Nutzername = :nname");
+		$result = $statement->execute(array('nname' => $nutzername));
+		$user = $statement->fetch();
+ 
+		//Überprüfung des Passworts
+		if ($user !== false && password_verify($password, $user['NutzerPW'])) 
+		{
+			$_SESSION['userid'] = $user['NutzerID'];
+			die('Login erfolgreich. Weiter zu <a href="Profil.php">internen Bereich</a>');
+		}
+	
+		else 
+		{
+			echo "Nutzername oder Passwort war ungültig<br>";
+		}
+	}
+  
+?> 
+
+
   <header>
-    <form style=" float: right; margin-top:15px;">
+    <form action="Start.php" method="POST" style="float:right; margin-top:15px;">
       <label for="uname">Username</label>
       <input type="text" id="uname" name=uname >
       <label for="pw">Password</label>
-      <input type="password" id="pw" name=password>
-      <button type="button"> Login </button>
+      <input type="password" id="password" name=password>
+      <button type="submit" name=login id=login> Login </button>
       <article style="display: block">
-        <a href="regestrieren" style="color: white " > Registrieren? </a>
+        <a href="Registrieren.php" style="color: white " > Registrieren? </a>
         <a href="pwvergessen" style="color: white; margin-left:200px" > Passwort vergessen? </a>
       </article>
     </form>
@@ -97,6 +129,8 @@
       <h1> Sudoku Online </h1>
     </div>
   </header>
+  
+
 
   <ul>
     <li><a href="Start.php" class="active" href="#Start">Start</a></li>

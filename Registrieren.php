@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-<head>
   <style>
 
     body{
@@ -62,7 +61,8 @@
       width: auto;
     }
 
-    form.register{
+    form.register
+	{
 	padding: 8px 5px;
 	font-size: 24px;
 	border: 1px solid rgb(28, 108, 122);
@@ -75,17 +75,197 @@
 		0px 5px 3px 3px rgb(210, 210, 210);
 	transition: all 0.2s linear;
     }
-
   </style>
+  
+<head>
+</head>
 <body>
 
-  <header>
-    <form style=" float: right; margin-top:15px;">
+<?php
+
+require_once('dbconfig.php');
+require_once('passwords.php');
+
+if(isset($_POST['register'])) 
+{
+
+ $error = false;
+ 
+ $nname= trim($_POST['uname']);
+ $name= trim($_POST['name']);
+ $email = trim($_POST['mail']);
+ $password = $_POST['password'];
+ $password2 = $_POST['password_confirm'];
+ $gender;
+ 
+ if(isset($_POST['genderm']))
+ {
+	 $gender=2;
+ }
+ elseif(isset($_POST['genderw']))
+ {
+	 $gender=3;
+ }
+ else
+ {
+	 $gender=1;
+ }
+ 
+ 
+ 
+
+ 
+ 
+ 
+  
+	if(!filter_var($email, FILTER_VALIDATE_EMAIL)) 
+	{
+		echo 'Bitte eine gültige E-Mail-Adresse eingeben<br>';
+		$error = true;
+	}
+		
+	//Überprüft, ob die E-Mail-Adresse noch nicht registriert wurde
+	if(!$error) 
+	{ 
+		$statement = $pdo->prepare("SELECT * FROM nutzer WHERE Mail = :email");
+		$result = $statement->execute(array(':email' => $email));
+		$mail = $statement->fetch();
+ 
+		if($mail !== false) 
+		{
+			echo 'Diese E-Mail-Adresse ist bereits vergeben<br>';
+			$error = true;
+		} 
+	
+	} 
+	
+	if(strlen($name) < 2)
+	{
+		echo 'Bitte geben sie einen Anzeigenamen an<br>';
+		$error=true;
+	}
+		
+	//Überprüft, ob der Anzeigename schon vorhanden ist
+	if(!$error) 
+	{ 
+		$statement = $pdo->prepare("SELECT * FROM nutzer WHERE EchterName = :nname");
+		$result = $statement->execute(array(':nname' => $nname));
+		$user = $statement->fetch();
+ 
+		if($user !== false) 
+		{
+			echo 'Dieser Nutzername ist bereits vergeben.<br>';
+			$error = true;
+		}
+	}
+	
+	
+	if(strlen($nname) < 3)
+	{
+		echo 'Bitte geben sie einen Nutzernamen an<br>';
+		$error=true;
+	}
+
+		
+	//Überprüft, ob der Nutzername schon vorhanden ist
+	if(!$error) 
+	{ 
+		
+		$statement = $pdo->prepare("SELECT * FROM nutzer WHERE Nutzername = :nname");
+		$result = $statement->execute(array('nname' => $nname));
+		$user = $statement->fetch();
+ 
+		if($user !== false) 
+		{
+			echo 'Dieser Nutzername ist bereits vergeben.<br>';
+			$error = true;
+		}
+	}
+	
+	
+	if(strlen($password) <= 6) 
+	{
+		echo 'Bitte ein Passwort mit einer Mindestlänge von 6 Zeichen angeben<br>';
+		$error = true;
+	}
+ 
+	if($password != $password2) 
+	{
+		echo 'Die Passwörter müssen übereinstimmen<br>';
+		$error = true;
+	}
+
+	
+	
+	
+ 
+	//Keine Fehler, Nutzer wird registriert
+	if(!$error) 
+	{ 
+		$password_hash = password_hash($password, PASSWORD_DEFAULT);
+		
+		$statement = $pdo->prepare("SELECT * FROM nutzer");
+		$result = $statement->execute();
+		$user = $statement->fetch();
+		
+		
+		
+		try
+		{
+ 
+		$statement = $pdo->prepare("INSERT INTO nutzer (Nutzername, NutzerPW, EchterName, Mail, Geschlecht) VALUES (:nname, :password, :name, :email, :gender);");
+		$statement->bindParam(':email', $email);
+		$statement->bindParam(':password', $password_hash);
+		$statement->bindParam(':nname', $nname);
+		$statement->bindParam(':name', $name);
+		$statement->bindParam(':gender', $gender);
+		
+		
+		$statement->execute();
+		}
+		catch(PDOException $e)
+		{
+			echo $e->getMessage();
+		}
+		
+ 
+		echo 'Du wurdest erfolgreich registriert. <a href="login.php">Zum Login</a>';
+		
+		
+	} 
+	elseif(isset($_POST['login']))
+	{
+		$nutzername = $_POST['uname'];
+		$password = $_POST['password'];
+ 
+		$statement = $pdo->prepare("SELECT * FROM nutzer WHERE Nutzername = :nname");
+		$result = $statement->execute(array('nname' => $nutzername));
+		$user = $statement->fetch();
+ 
+		//Überprüfung des Passworts
+		if ($user !== false && password_verify($password, $user['NutzerPW'])) 
+		{
+			$_SESSION['userid'] = $user['NutzerID'];
+			die('Login erfolgreich. Weiter zum <a href="Start.php">internen Bereich</a>');
+		}
+	
+		else 
+		{
+			echo "Nutzername oder Passwort war ungültig<br>";
+		}
+	}
+	
+}
+
+?>
+  
+ <header>
+    <form action="Start.php" method="POST" style="float:right; margin-top:15px;">
       <label for="uname">Username</label>
       <input type="text" id="uname" name=uname >
       <label for="pw">Password</label>
-      <input type="password" id="pw" name=password>
-      <button type="button"> Login </button>
+      <input type="password" id="password" name=password>
+      <button type="submit"> Login </button>
       <article style="display: block">
         <a href="Registrieren.php" style="color: white " > Registrieren? </a>
         <a href="pwvergessen" style="color: white; margin-left:200px" > Passwort vergessen? </a>
@@ -95,6 +275,11 @@
       <h1> Sudoku Online </h1>
     </div>
   </header>
+  
+
+
+
+
 
   <ul>
     <li><a href="Start.php" class="active" href="#Start">Start</a></li>
@@ -108,7 +293,7 @@
 
   <article style="float:left; margin-left: 10px">
     <section class="container"style="color: white; font-size: 130%">
-      <form class="register"action="default" method="post">
+      <form class="register"action="registrieren.php" method="POST">
         <table style="width:100%; text-align: left; font-size: 110%">
           <tr>
             <th> <label for="uname" >Username</label> </th>
@@ -120,8 +305,8 @@
           </tr>
           <tr>
             <th> Geschlecht </th>
-            <td> <input type="radio" name="gender" value="männlich"> männlich
-                 <input type="radio" name="gender" value="weiblich"> weiblich</td>
+            <td> <input type="radio" name="genderm" id='genderm' value="männlich"> männlich
+                 <input type="radio" name="genderw" id='genderw' value="weiblich"> weiblich</td>
           </tr>
           <tr>
             <th> <label for="name" >Mail-Adresse </label> </th>
@@ -136,12 +321,12 @@
             <td> <input type="text" id="password_confirm" name=password_confirm> </td>
           </tr>
         </table>
-        <button type="button" style="margin-left: 200px"> Registrieren </button>
+        <button type="submit" style="margin-left: 200px" id='register' name='register'> Registrieren </button>
      </form>
     </section>
   </article>
-
-
+  
+  
 
 
   <footer style="margin-top:36%">
@@ -151,5 +336,4 @@
   </footer>
 
 </body>
-</head>
 </html>
