@@ -1,3 +1,0 @@
-CREATE TRIGGER `spiele_nutzer` BEFORE INSERT ON `nutzer`
- FOR EACH ROW INSERT INTO spiele (SpielerID)
-VALUES (SpielerID)
