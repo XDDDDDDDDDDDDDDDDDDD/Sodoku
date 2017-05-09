@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 08. Mai 2017 um 11:13
+-- Erstellungszeit: 09. Mai 2017 um 22:38
 -- Server-Version: 10.1.21-MariaDB
--- PHP-Version: 7.1.1
+-- PHP-Version: 7.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -38,6 +38,28 @@ CREATE TABLE `nutzer` (
   `Status` text COLLATE utf8_german2_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_german2_ci;
 
+--
+-- Daten für Tabelle `nutzer`
+--
+
+INSERT INTO `nutzer` (`NutzerID`, `Nutzername`, `NutzerPW`, `EchterName`, `Mail`, `Geschlecht`, `RegistriertSeit`, `SpielerID`, `Status`) VALUES
+(16, 'afafaf', 'afafa', 'afafa', 'afaf', 'männlich', '2017-05-09 20:36:43', 2, NULL);
+
+--
+-- Trigger `nutzer`
+--
+DELIMITER $$
+CREATE TRIGGER `spiele_erstellen` BEFORE INSERT ON `nutzer` FOR EACH ROW begin
+      	SET @id=new.NutzerID;
+        INSERT INTO spiele (SpielerID) VALUES (null);
+        SET @id2=LAST_INSERT_ID();
+        set new.SpielerID=@id2;
+
+       
+END
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -60,6 +82,13 @@ CREATE TABLE `spiele` (
   `DuelleGew` int(6) DEFAULT '0',
   `DuelleGes` int(6) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_german2_ci;
+
+--
+-- Daten für Tabelle `spiele`
+--
+
+INSERT INTO `spiele` (`SpielerID`, `gewSpiele`, `gewSpieleLeicht`, `gewSpieleMittel`, `gewSpieleSchwer`, `gewSpieleExtrem`, `durchZeitLeicht`, `durchZeitMittel`, `durchZeitSchwer`, `durchZeitExtrem`, `durchZeitAllgemein`, `Elo`, `DuelleGew`, `DuelleGes`) VALUES
+(2, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 1000, 0, 0);
 
 --
 -- Indizes der exportierten Tabellen
@@ -85,12 +114,12 @@ ALTER TABLE `spiele`
 -- AUTO_INCREMENT für Tabelle `nutzer`
 --
 ALTER TABLE `nutzer`
-  MODIFY `NutzerID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `NutzerID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT für Tabelle `spiele`
 --
 ALTER TABLE `spiele`
-  MODIFY `SpielerID` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `SpielerID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

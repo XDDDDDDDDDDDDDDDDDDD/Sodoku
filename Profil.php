@@ -70,8 +70,8 @@
 ?>
 
   <header>
-    <form style=" float: right; margin-top:5px; margin-right:20px">
-      <button type="button" onclick="Start.php"> Logout </button>
+    <form action="logout.php" method="POST" style=" float: right; margin-top:5px; margin-right:20px">
+      <button type="submit" name=logout id=logout> Logout </button>
     </form>
     <div>
       <h1> Sudoku Online </h1>

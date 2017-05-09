@@ -84,58 +84,19 @@
 <?PHP
 	
 	session_start();
+	
+	if(isset($_SESSION['eingeloggt']) && $_SESSION['eingeloggt'])
+	{
+		include('logoutHeader.php');
+	}
+	else
+	{
+		include('loginHeader.php');
+	}
 
 	
-	require_once('dbconfig.php');
-	require_once('passwords.php');
-	
-	if(isset($_POST['login']))
-	{
-		$nutzername = $_POST['uname'];
-		$password = $_POST['password'];
- 
-		$statement = $pdo->prepare("SELECT * FROM nutzer WHERE Nutzername = :nname");
-		$result = $statement->execute(array('nname' => $nutzername));
-		$user = $statement->fetch();
- 
-		//Überprüfung des Passworts
-		if ($user !== false && password_verify($password, $user['NutzerPW'])) 
-		{
-			$_SESSION['userid'] = $user['NutzerID'];
-			$_SESSION['nutzername']=utf8_encode($user['Nutzername']);
-			$_SESSION['name']=utf8_encode($user['EchterName']);
-			$_SESSION['geschlecht']=utf8_encode($user['Geschlecht']);
-			$_SESSION['email']=utf8_encode($user['Mail']);
-			$_SESSION['status']=utf8_encode($user['Status']);
-			$_SESSION['datum']=$user['RegistriertSeit'];
-			die('Login erfolgreich. Weiter zu <a href="Profil.php">internen Bereich</a>');
-		}
-	
-		else 
-		{
-			echo "Nutzername oder Passwort war ungültig<br>";
-		}
-	}
   
 ?> 
-
-
-  <header>
-    <form action="Start.php" method="POST" style="float:right; margin-top:15px;">
-      <label for="uname">Username</label>
-      <input type="text" id="uname" name=uname >
-      <label for="pw">Password</label>
-      <input type="password" id="password" name=password>
-      <button type="submit" name=login id=login> Login </button>
-      <article style="display: block">
-        <a href="Registrieren.php" style="color: white " > Registrieren? </a>
-        <a href="pwvergessen" style="color: white; margin-left:200px" > Passwort vergessen? </a>
-      </article>
-    </form>
-    <div style="width: 1910px; border-bottom: 2px solid white;">
-      <h1> Sudoku Online </h1>
-    </div>
-  </header>
   
 
 
@@ -143,8 +104,8 @@
     <li><a href="Start.php" class="active" href="#Start">Start</a></li>
     <li><a href="Profil.php"class="active" href="#Profil">Profil</a></li>
     <li><a href="Bestenliste"class="active" href="#Bestenliste">Bestenliste</a></li>
-    <li><a href="Regeln" class="active" href="#Regeln">Regeln</a></li>
-    <li><a href="Impressum" class="active" href="#Impressum">Impressum</a></li>
+    <li><a href="Tutorial.php" class="active" href="#Regeln">Regeln</a></li>
+    <li><a href="Impressum.php" class="active" href="#Impressum">Impressum</a></li>
   </ul>
 
   <article style="float:left; margin-left:30%; margin-top:60px">
