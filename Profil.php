@@ -96,11 +96,11 @@
       <table style="width:100%; text-align: left; font-size: 110%">
         <tr>
           <th> Name </th>
-          <td> <?php echo $_SESSION['name']; ?> </td>
+          <td> <?php echo htmlspecialchars($_SESSION['name']); ?> </td>
         </tr>
         <tr>
           <th> Username </th>
-          <td> <?php echo $_SESSION['nutzername']; ?> </td>
+          <td> <?php echo htmlspecialchars($_SESSION['nutzername']); ?> </td>
         </tr>
         <tr>
           <th> Geschlecht </th>
@@ -108,11 +108,11 @@
         </tr>
         <tr>
           <th> Mail Adresse </th>
-          <td> <?php echo $_SESSION['email']; ?> </td>
+          <td> <?php echo htmlspecialchars($_SESSION['email']); ?> </td>
         </tr>
         <tr>
           <th> Status </th>
-          <td> <?php echo $_SESSION['status']; ?> </td>
+          <td> <?php echo htmlspecialchars($_SESSION['status']); ?> </td>
         </tr>
 
       </table>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 10. Mai 2017 um 12:02
+-- Erstellungszeit: 10. Mai 2017 um 14:00
 -- Server-Version: 10.1.21-MariaDB
 -- PHP-Version: 7.1.1
 
@@ -29,9 +29,10 @@ SET time_zone = "+00:00";
 CREATE TABLE `nutzer` (
   `NutzerID` int(10) NOT NULL,
   `Nutzername` varchar(20) COLLATE utf8_german2_ci NOT NULL,
-  `NutzerPW` varchar(100) COLLATE utf8_german2_ci NOT NULL,
   `EchterName` varchar(30) COLLATE utf8_german2_ci DEFAULT NULL,
+  `NutzerPW` varchar(100) COLLATE utf8_german2_ci NOT NULL,
   `Mail` varchar(30) COLLATE utf8_german2_ci NOT NULL,
+  `verifiziert` tinyint(1) NOT NULL DEFAULT '0',
   `Geschlecht` enum('nicht festgelegt','männlich','weiblich') COLLATE utf8_german2_ci NOT NULL DEFAULT 'nicht festgelegt',
   `RegistriertSeit` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `SpielerID` int(10) NOT NULL,
@@ -42,10 +43,8 @@ CREATE TABLE `nutzer` (
 -- Daten für Tabelle `nutzer`
 --
 
-INSERT INTO `nutzer` (`NutzerID`, `Nutzername`, `NutzerPW`, `EchterName`, `Mail`, `Geschlecht`, `RegistriertSeit`, `SpielerID`, `Status`) VALUES
-(1, 'admin', '$2y$10$nK5t8tTeSDM/Z9KTqRo6fu7AfLpO.WxVRLjomr6wG5BBOyqNZbHuu', 'admin', 'admin@admin.de', 'männlich', '2017-05-10 07:59:45', 1, NULL),
-(2, 'admin2', '$2y$10$bT1K5kmBKi0FoN7zHd39cOt08irMxT65qJYJTNXkVvGrGDqQ3ioQC', 'admin2', 'g@g.de', 'männlich', '2017-05-10 08:20:03', 2, NULL),
-(3, 'fafa', '$2y$10$Zq7H8XieM1QCGgs9V8GG7eeG18mNCgnPqGEHElxb0ddxBIrnWyXMC', 'fafa', 'f@f.de', 'männlich', '2017-05-10 08:34:41', 3, NULL);
+INSERT INTO `nutzer` (`NutzerID`, `Nutzername`, `EchterName`, `NutzerPW`, `Mail`, `verifiziert`, `Geschlecht`, `RegistriertSeit`, `SpielerID`, `Status`) VALUES
+(1, 'admin', 'admin', '$2y$10$hmRQK8aEo.Gl0s.OixIX9.0ifakjz1Ht4QLrcP4qBAeAmNf8718.m', 'g@web.de', 0, 'männlich', '2017-05-10 10:06:24', 1, NULL);
 
 --
 -- Trigger `nutzer`
@@ -90,9 +89,7 @@ CREATE TABLE `spiele` (
 --
 
 INSERT INTO `spiele` (`SpielerID`, `gewSpiele`, `gewSpieleLeicht`, `gewSpieleMittel`, `gewSpieleSchwer`, `gewSpieleExtrem`, `durchZeit`, `durchZeitLeicht`, `durchZeitMittel`, `durchZeitSchwer`, `durchZeitExtrem`, `Elo`, `DuelleGew`, `DuelleGes`) VALUES
-(1, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 1000, 0, 0),
-(2, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 1000, 0, 0),
-(3, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 1000, 0, 0);
+(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 0, 0);
 
 --
 -- Indizes der exportierten Tabellen
@@ -118,12 +115,12 @@ ALTER TABLE `spiele`
 -- AUTO_INCREMENT für Tabelle `nutzer`
 --
 ALTER TABLE `nutzer`
-  MODIFY `NutzerID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `NutzerID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT für Tabelle `spiele`
 --
 ALTER TABLE `spiele`
-  MODIFY `SpielerID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `SpielerID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

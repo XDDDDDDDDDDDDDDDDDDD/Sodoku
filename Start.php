@@ -94,16 +94,22 @@
 	
 	if(isset($_SESSION['eingeloggt']) && $_SESSION['eingeloggt'])
 	{
-		include('logoutHeader.php');
+		include('header/headerLogout.html');
 		$act='active';
+		
+		if($_SESSION['verifiziert']==false)
+		{
+			include('header/headerVeri.html');
+		}
 		
 	}
 	else
 	{
-		include('loginHeader.php');
+		include('header/headerLogin.php');
 		$act='disabled';
 		
 	}
+	
 
 	
   

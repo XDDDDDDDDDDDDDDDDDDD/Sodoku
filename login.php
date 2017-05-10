@@ -29,10 +29,11 @@ require_once('passwords.php');
 			$_SESSION['name']=utf8_encode($user['EchterName']);
 			$_SESSION['geschlecht']=utf8_encode($user['Geschlecht']);
 			$_SESSION['email']=utf8_encode($user['Mail']);
+			$_SESSION['email']=utf8_encode($user['Mail']);
 			$_SESSION['status']=utf8_encode($user['Status']);
 			$_SESSION['datum']=$user['RegistriertSeit'];
 			
-			$_SESSION['gewSpiele']=$user['gewSpiele'];
+			$_SESSION['verifiziert']=$user['verifiziert'];
 			$_SESSION['gewSpieleLeicht']=$user['gewSpieleLeicht'];
 			$_SESSION['gewSpieleMittel']=$user['gewSpieleMittel'];
 			$_SESSION['gewSpieleSchwer']=$user['gewSpieleSchwer'];
