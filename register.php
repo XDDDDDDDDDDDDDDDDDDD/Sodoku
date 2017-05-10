@@ -45,7 +45,7 @@ if(isset($_POST['register']))
 	//Überprüft, ob die E-Mail-Adresse noch nicht registriert wurde
 	if(!$error) 
 	{ 
-		$statement = $pdo->prepare("SELECT * FROM nutzer WHERE Mail = :email");
+		$statement = $pdo->prepare("SELECT * FROM nutzer, spiele WHERE Mail = :email");
 		$result = $statement->execute(array(':email' => $email));
 		$mail = $statement->fetch();
  
@@ -140,6 +140,27 @@ if(isset($_POST['register']))
 		
 		
 		$statement->execute();
+		
+		
+		
+		$statement2 = $pdo->prepare("SELECT * FROM nutzer, spiele WHERE Nutzername = :nname AND nutzer.SpielerID = spiele.SpielerID");
+		$result = $statement2->execute(array('nname' => $nname));
+		$user = $statement2->fetch();
+		
+		
+		if ($user !== false) 
+		{
+		
+			$_SESSION['eingeloggt']=true;
+			$_SESSION['userid'] = $user['NutzerID'];
+			$_SESSION['nutzername']=utf8_encode($user['Nutzername']);
+			$_SESSION['name']=utf8_encode($user['EchterName']);
+			$_SESSION['geschlecht']=utf8_encode($user['Geschlecht']);
+			$_SESSION['email']=utf8_encode($user['Mail']);
+			$_SESSION['status']=utf8_encode($user['Status']);
+			$_SESSION['datum']=$user['RegistriertSeit'];
+		}
+		
 		}
 		catch(PDOException $e)
 		{
