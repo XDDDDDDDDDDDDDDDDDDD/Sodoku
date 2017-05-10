@@ -78,13 +78,13 @@
 	
 	if(isset($_SESSION['eingeloggt']) && $_SESSION['eingeloggt'])
 	{
-		include('logoutHeader.php');
+		include('header/headerLogout.html');
 		$act='active';
 		
 	}
 	else
 	{
-		include('loginHeader.php');
+		include('header/headerLogin.php');
 		$act='disabled';
 		
 	}
