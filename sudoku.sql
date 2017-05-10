@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 09. Mai 2017 um 22:38
+-- Erstellungszeit: 10. Mai 2017 um 12:02
 -- Server-Version: 10.1.21-MariaDB
--- PHP-Version: 7.1.2
+-- PHP-Version: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -43,7 +43,9 @@ CREATE TABLE `nutzer` (
 --
 
 INSERT INTO `nutzer` (`NutzerID`, `Nutzername`, `NutzerPW`, `EchterName`, `Mail`, `Geschlecht`, `RegistriertSeit`, `SpielerID`, `Status`) VALUES
-(16, 'afafaf', 'afafa', 'afafa', 'afaf', 'männlich', '2017-05-09 20:36:43', 2, NULL);
+(1, 'admin', '$2y$10$nK5t8tTeSDM/Z9KTqRo6fu7AfLpO.WxVRLjomr6wG5BBOyqNZbHuu', 'admin', 'admin@admin.de', 'männlich', '2017-05-10 07:59:45', 1, NULL),
+(2, 'admin2', '$2y$10$bT1K5kmBKi0FoN7zHd39cOt08irMxT65qJYJTNXkVvGrGDqQ3ioQC', 'admin2', 'g@g.de', 'männlich', '2017-05-10 08:20:03', 2, NULL),
+(3, 'fafa', '$2y$10$Zq7H8XieM1QCGgs9V8GG7eeG18mNCgnPqGEHElxb0ddxBIrnWyXMC', 'fafa', 'f@f.de', 'männlich', '2017-05-10 08:34:41', 3, NULL);
 
 --
 -- Trigger `nutzer`
@@ -73,11 +75,11 @@ CREATE TABLE `spiele` (
   `gewSpieleMittel` int(6) DEFAULT '0',
   `gewSpieleSchwer` int(6) DEFAULT '0',
   `gewSpieleExtrem` int(6) DEFAULT '0',
-  `durchZeitLeicht` double DEFAULT NULL,
-  `durchZeitMittel` double DEFAULT NULL,
-  `durchZeitSchwer` double DEFAULT NULL,
-  `durchZeitExtrem` double DEFAULT NULL,
-  `durchZeitAllgemein` double DEFAULT NULL,
+  `durchZeit` double DEFAULT '0',
+  `durchZeitLeicht` double DEFAULT '0',
+  `durchZeitMittel` double DEFAULT '0',
+  `durchZeitSchwer` double DEFAULT '0',
+  `durchZeitExtrem` double DEFAULT '0',
   `Elo` int(5) NOT NULL DEFAULT '1000',
   `DuelleGew` int(6) DEFAULT '0',
   `DuelleGes` int(6) DEFAULT '0'
@@ -87,8 +89,10 @@ CREATE TABLE `spiele` (
 -- Daten für Tabelle `spiele`
 --
 
-INSERT INTO `spiele` (`SpielerID`, `gewSpiele`, `gewSpieleLeicht`, `gewSpieleMittel`, `gewSpieleSchwer`, `gewSpieleExtrem`, `durchZeitLeicht`, `durchZeitMittel`, `durchZeitSchwer`, `durchZeitExtrem`, `durchZeitAllgemein`, `Elo`, `DuelleGew`, `DuelleGes`) VALUES
-(2, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 1000, 0, 0);
+INSERT INTO `spiele` (`SpielerID`, `gewSpiele`, `gewSpieleLeicht`, `gewSpieleMittel`, `gewSpieleSchwer`, `gewSpieleExtrem`, `durchZeit`, `durchZeitLeicht`, `durchZeitMittel`, `durchZeitSchwer`, `durchZeitExtrem`, `Elo`, `DuelleGew`, `DuelleGes`) VALUES
+(1, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 1000, 0, 0),
+(2, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 1000, 0, 0),
+(3, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 1000, 0, 0);
 
 --
 -- Indizes der exportierten Tabellen
@@ -114,12 +118,12 @@ ALTER TABLE `spiele`
 -- AUTO_INCREMENT für Tabelle `nutzer`
 --
 ALTER TABLE `nutzer`
-  MODIFY `NutzerID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `NutzerID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT für Tabelle `spiele`
 --
 ALTER TABLE `spiele`
-  MODIFY `SpielerID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `SpielerID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

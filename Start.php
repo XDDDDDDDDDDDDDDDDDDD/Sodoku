@@ -73,6 +73,11 @@
     article {
 
     }
+	
+	.disabled {
+    pointer-events:none; //This makes it not clickable
+    opacity:0.6;         //This grays it out to look disabled
+	}
 
 
 
@@ -85,13 +90,19 @@
 	
 	session_start();
 	
+	$act;
+	
 	if(isset($_SESSION['eingeloggt']) && $_SESSION['eingeloggt'])
 	{
 		include('logoutHeader.php');
+		$act='active';
+		
 	}
 	else
 	{
 		include('loginHeader.php');
+		$act='disabled';
+		
 	}
 
 	
@@ -102,7 +113,7 @@
 
   <ul>
     <li><a href="Start.php" class="active" href="#Start">Start</a></li>
-    <li><a href="Profil.php"class="active" href="#Profil">Profil</a></li>
+    <li><a href="Profil.php"class=<?PHP echo $act; ?> href="#Profil">Profil</a></li>
     <li><a href="Bestenliste"class="active" href="#Bestenliste">Bestenliste</a></li>
     <li><a href="Tutorial.php" class="active" href="#Regeln">Regeln</a></li>
     <li><a href="Impressum.php" class="active" href="#Impressum">Impressum</a></li>

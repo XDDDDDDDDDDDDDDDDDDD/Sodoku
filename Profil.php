@@ -73,9 +73,9 @@
     <form action="logout.php" method="POST" style=" float: right; margin-top:5px; margin-right:20px">
       <button type="submit" name=logout id=logout> Logout </button>
     </form>
-    <div>
+    <div style="width: 1900px; border-bottom: 2px solid white;">
       <h1> Sudoku Online </h1>
-      <p  style="text-align: right; margin-top:-43px; margin-right:100px; font-size:120%"> Hallo <?php echo $_SESSION['name']; ?> !</p>
+      <p  style="text-align: right; margin-top:-55px; margin-right:75px; font-size:120%"> Hallo <?php echo $_SESSION['name']; ?> !</p>
     </div>
   </header>
 
@@ -83,8 +83,8 @@
     <li><a href="Start.php" class="active" href="#Start">Start</a></li>
     <li><a href="Profil.php"class="active" href="#Profil">Profil</a></li>
     <li><a href="Bestenliste"class="active" href="#Bestenliste">Bestenliste</a></li>
-    <li><a href="Regeln" class="active" href="#Regeln">Regeln</a></li>
-    <li><a href="Impressum" class="active" href="#Impressum">Impressum</a></li>
+    <li><a href="Tutorial.php" class="active" href="#Regeln">Regeln</a></li>
+    <li><a href="Impressum.php" class="active" href="#Impressum">Impressum</a></li>
   </ul>
 
   <h3 style="color:white; font-size: 150%"> <ins> Profil </ins> </h3>
@@ -130,7 +130,7 @@
       <table style="width:100%; text-align:left">
         <tr>
           <th> ELO: </th>
-          <td> 1000 </td>
+          <td> <?php echo $_SESSION['Elo']; ?> </td>
         </tr>
         <tr>
           <th> Rang: </th>
@@ -144,44 +144,44 @@
           <table style="width:100%; text-align:left">
             <tr>
               <th> leicht </th>
-              <td> 500 </td>
+              <td> <?php echo $_SESSION['gewSpieleLeicht']; ?> </td>
             </tr>
             <tr>
               <th> mittel </th>
-              <td> 1000 </td>
+              <td> <?php echo $_SESSION['gewSpieleMittel']; ?> </td>
             </tr>
             <tr>
               <th> schwer </th>
-              <td> 10 </td>
+              <td> <?php echo $_SESSION['gewSpieleSchwer']; ?> </td>
             </tr>
             <tr>
               <th> extrem </th>
-              <td> 0 </td>
+              <td> <?php echo $_SESSION['gewSpieleExtrem']; ?> </td>
             </tr>
           </table>
         </dd>
       </dl>
 
-<!-- Zeigt die besten Zeiten des Spielers in den einzelnen Schwierigkeitsgraden an. -->
+<!-- Zeigt die Durchschnittszeiten des Spielers in den einzelnen Schwierigkeitsgraden an. -->
       <dl>
         <dt> Beste Zeiten: </dt>
         <dd>
           <table style="width:100%; text-align:left">
             <tr>
               <th> leicht </th>
-              <td> 0:05:31 </td>
+              <td> <?php echo $_SESSION['durchZeitLeicht']; ?> </td>
             </tr>
             <tr>
               <th> mittel </th>
-              <td> 0:07:01 </td>
+              <td> <?php echo $_SESSION['durchZeitMittel']; ?> </td>
             </tr>
             <tr>
               <th> schwer </th>
-              <td> 0:10:49 </td>
+              <td> <?php echo $_SESSION['durchZeitSchwer']; ?> </td>
             </tr>
             <tr>
               <th> extrem </th>
-              <td> 0:30:22 </td>
+              <td> <?php echo $_SESSION['durchZeitExtrem']; ?> </td>
             </tr>
           </table>
         </dd>

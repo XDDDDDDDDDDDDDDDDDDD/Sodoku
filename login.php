@@ -31,6 +31,22 @@ require_once('passwords.php');
 			$_SESSION['email']=utf8_encode($user['Mail']);
 			$_SESSION['status']=utf8_encode($user['Status']);
 			$_SESSION['datum']=$user['RegistriertSeit'];
+			
+			$_SESSION['gewSpiele']=$user['gewSpiele'];
+			$_SESSION['gewSpieleLeicht']=$user['gewSpieleLeicht'];
+			$_SESSION['gewSpieleMittel']=$user['gewSpieleMittel'];
+			$_SESSION['gewSpieleSchwer']=$user['gewSpieleSchwer'];
+			$_SESSION['gewSpieleExtrem']=$user['gewSpieleExtrem'];
+			
+			$_SESSION['durchZeit']=$user['durchZeit'];
+			$_SESSION['durchZeitLeicht']=$user['durchZeitLeicht'];
+			$_SESSION['durchZeitMittel']=$user['durchZeitMittel'];
+			$_SESSION['durchZeitSchwer']=$user['durchZeitSchwer'];
+			$_SESSION['durchZeitExtrem']=$user['durchZeitExtrem'];
+			
+			$_SESSION['Elo']=$user['Elo'];
+			$_SESSION['duelleGew']=$user['duelleGew'];
+			$_SESSION['duelleGes']=$user['duelleGes'];
 			header('Location: Start.php');
 		}
 		else 
