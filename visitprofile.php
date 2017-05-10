@@ -92,8 +92,8 @@
   <article style="float:left; margin-left: 10px">
     <h3 style="color:green; font-size:120%"> <ins> Persönliche Daten </ins>
     </h3>
-    <section style="color: white; width:400px">
-      <table style="width:auto; text-align: left; font-size: 110%">
+    <section style="color: white; ">
+      <table style="width:100%; text-align: left; font-size: 110%">
         <tr>
           <th> Name </th>
           <td> <?php echo htmlspecialchars($_SESSION['name']); ?> </td>
@@ -107,15 +107,10 @@
           <td> <?php echo $_SESSION['geschlecht']; ?> </td>
         </tr>
         <tr>
-          <th> Mail Adresse </th>
-          <td> <?php echo htmlspecialchars($_SESSION['email']); ?> </td>
-          <td>  <button type="submit" name=mail id=mail style="width:100px"> E-Mail ändern </button> </td>
-        </tr>
-        <tr>
           <th> Status </th>
-          <td> <textarea rows="5" cols="30" disabled="active"> <?php echo htmlspecialchars($_SESSION['status']); ?> </textarea> </td>
-          <td> <button type="submit" name=status id=status > Status ändern </button> </td>
+          <td> <?php echo htmlspecialchars($_SESSION['status']); ?> </td>
         </tr>
+
       </table>
     </section>
   </article>
@@ -127,7 +122,7 @@
     </h3>
 <!-- Zeigt Elo und Rang des Spielers an -->
     <section style="color: white; font-size:110% ">
-      <p> Du spielst seit <?php echo $_SESSION['datum']; ?>. </p>
+      <p> Aktiv seit <?php echo $_SESSION['datum']; ?>. </p>
       <table style="width:100%; text-align:left">
         <tr>
           <th> ELO: </th>

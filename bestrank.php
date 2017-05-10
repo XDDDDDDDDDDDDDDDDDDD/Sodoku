@@ -4,11 +4,13 @@
   <style>
 
     body{
-      background-image: url("pictures/Tafel.jpg");
+       background-image: url("pictures/Tafel.jpg");
     }
 
     header{
       color: white;
+      width: 1910px;
+      border-bottom: 2px solid white;
     }
 
     footer{
@@ -21,7 +23,6 @@
 
     .button{
       width: 120px;
-      margin-left: 65px;
       margin-top: 5px;
       display: block;
     }
@@ -49,10 +50,18 @@
     background-color: #111;
     }
 
-	.disabled {
-    pointer-events:none; //This makes it not clickable
-    opacity:0.6;         //This grays it out to look disabled
-	}
+    td, th {
+    padding: 5px;
+    border-right: 1px solid white;
+    border-bottom:  1px solid white;
+    }
+
+    div.scroll{
+      color:white;
+      overflow: scroll;
+      width: 300px;
+      height: 600px;
+    }
 
   </style>
 <body>
@@ -61,50 +70,43 @@
 
 	session_start();
 
-	$act;
-
-	if(isset($_SESSION['eingeloggt']) && $_SESSION['eingeloggt'])
-	{
-		include('header/headerLogout.html');
-		$act='active';
-
-	}
-	else
-	{
-		include('header/headerLogin.php');
-		$act='disabled';
-
-	}
-
 
 
 ?>
 
-
+  <header>
+    <form action="logout.php" method="POST" style=" float: right; margin-top:5px; margin-right:20px">
+      <button type="submit" name=logout id=logout> Logout </button>
+    </form>
+    <div style="width: 1900px; border-bottom: 2px solid white;">
+      <h1> Sudoku Online </h1>
+      <p  style="text-align: right; margin-top:-55px; margin-right:75px; font-size:120%"> Hallo <?php echo $_SESSION['name']; ?> !</p>
+    </div>
+  </header>
 
   <ul>
     <li><a href="Start.php" class="active" href="#Start">Start</a></li>
-    <li><a href="Profil.php"class=<?PHP echo $act; ?> href="#Profil">Profil</a></li>
+    <li><a href="Profil.php"class="active" href="#Profil">Profil</a></li>
     <li><a href="Bestenliste"class="active" href="#Bestenliste">Bestenliste</a></li>
     <li><a href="Tutorial.php" class="active" href="#Regeln">Regeln</a></li>
     <li><a href="Impressum.php" class="active" href="#Impressum">Impressum</a></li>
   </ul>
 
+  <h1 style="color:white; text-align: center"> Bestenlisten ELO und Rang </h1>
 
 
-  <article style="color:white">
-    <h1 style="text-decoration: underline"> Impressum </h1>
-    <p style="font-size:130%"> SudokuOnline ist ein Produkt der FürDummies GmbH. </p>
-    <p style="font-size: 120%"> Verantwortlich: <br/>
-      FürDummies GmbH <br/>
-      Am Stockhof 2 <br/>
-      31785 Hameln </p>
-    <p style="font-size: 120%"> Vorstand: <br/>
-      Jan Getschmann <br/>
-      Christian Kracht <br/>
-      Carolin Kuessner </p>
 
-  </article>
+  <div class="scroll" style="float:left; margin-left:40%; margin-top:60px">
+    <h2> ELO </h2>
+    <table style="width:auto; text-align:left">
+      <tr>
+        <th> Username </th>
+        <td> ELO </td>
+        <td> Rang   </td>
+      </tr>
+    </table>
+  </div>
+
 
 
 

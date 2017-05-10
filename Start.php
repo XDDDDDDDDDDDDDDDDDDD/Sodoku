@@ -4,7 +4,7 @@
   <style>
 
     body{
-      background-image: url("http://www.commacross.de/www/wp-content/uploads/2015/05/Tafel.jpg");
+      background-image: url("pictures/Tafel.jpg");
     }
 
     header{
@@ -73,7 +73,7 @@
     article {
 
     }
-	
+
 	.disabled {
     pointer-events:none; //This makes it not clickable
     opacity:0.6;         //This grays it out to look disabled
@@ -87,34 +87,34 @@
 <body>
 
 <?PHP
-	
+
 	session_start();
-	
+
 	$act;
-	
+
 	if(isset($_SESSION['eingeloggt']) && $_SESSION['eingeloggt'])
 	{
 		include('header/headerLogout.html');
 		$act='active';
-		
+
 		if($_SESSION['verifiziert']==false)
 		{
 			include('header/headerVeri.html');
 		}
-		
+
 	}
 	else
 	{
 		include('header/headerLogin.php');
 		$act='disabled';
-		
-	}
-	
 
-	
-  
-?> 
-  
+	}
+
+
+
+
+?>
+
 
 
   <ul>
@@ -161,7 +161,7 @@
     </div>
   </article>
 
-  <footer style="margin-top:39%">
+  <footer style="position: absolute; bottom: 5px">
     Copyright &copy; Getschmann, Kracht, Kuessner </br>
     31789 Hameln Sudoku für Dummies GmbH </br>
     Email: Dummies.Hsw@google.com

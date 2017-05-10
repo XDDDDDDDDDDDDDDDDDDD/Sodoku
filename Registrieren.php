@@ -3,7 +3,7 @@
   <style>
 
     body{
-      background-image: url("http://www.commacross.de/www/wp-content/uploads/2015/05/Tafel.jpg");
+      background-image: url("pictures/Tafel.jpg");
     }
 
     header{
@@ -76,7 +76,7 @@
 	transition: all 0.2s linear;
     }
   </style>
-  
+
 <head>
 </head>
 <body>
@@ -85,7 +85,7 @@
 session_start();
 
 ?>
-  
+
  <header>
     <form action="login.php" method="POST" style="float:right; margin-top:15px;">
       <label for="uname">Username</label>
@@ -102,7 +102,7 @@ session_start();
       <h1> Sudoku Online </h1>
     </div>
   </header>
-  
+
 
 
 
@@ -152,11 +152,11 @@ session_start();
      </form>
     </section>
   </article>
-  
-  
 
 
-  <footer style="margin-top:36%">
+
+
+  <footer style="position: absolute; bottom: 5px">
     Copyright &copy; Getschmann, Kracht, Kuessner </br>
     31789 Hameln Sudoku für Dummies GmbH </br>
     Email: Dummies.Hsw@google.com
