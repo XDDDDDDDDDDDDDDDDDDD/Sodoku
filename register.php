@@ -160,6 +160,8 @@ if(isset($_POST['register']))
 			$_SESSION['status']=utf8_encode($user['Status']);
 			$_SESSION['datum']=$user['RegistriertSeit'];
 			
+			$_SESSION['verifiziert']=$user['verifiziert'];
+			$_SESSION['verify'] = rand(10000,99999);
 			$_SESSION['gewSpiele']=$user['gewSpiele'];
 			$_SESSION['gewSpieleLeicht']=$user['gewSpieleLeicht'];
 			$_SESSION['gewSpieleMittel']=$user['gewSpieleMittel'];
