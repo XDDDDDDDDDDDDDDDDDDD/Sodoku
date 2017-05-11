@@ -48,6 +48,28 @@
     li a:hover {
     background-color: #111;
     }
+	  
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: white;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      text-align: left;
+    }
+
+    .dropdown-content a:hover {background-color: black}
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
 
 	.disabled {
     pointer-events:none; //This makes it not clickable
@@ -85,7 +107,14 @@
   <ul>
     <li><a href="Start.php" class="active" href="#Start">Start</a></li>
     <li><a href="Profil.php"class=<?PHP echo $act; ?> href="#Profil">Profil</a></li>
-    <li><a href="Bestenliste"class="active" href="#Bestenliste">Bestenliste</a></li>
+    <li class="dropdown">
+      <a href="Bestenliste"class="active" >Bestenliste</a>
+      <div class="dropdown-content">
+        <a href="besttime.php"> Bestenliste Zeiten </a>
+        <a href="bestgames.php"> Bestenliste Spiele </a>
+        <a href="bestrank.php"> Bestenliste ELO </a>
+      </div>
+    </li>
     <li><a href="Tutorial.php" class="active" href="#Regeln">Regeln</a></li>
     <li><a href="Impressum.php" class="active" href="#Impressum">Impressum</a></li>
   </ul>
