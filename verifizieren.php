@@ -80,17 +80,14 @@
 	</style>
 </head>
 <body>
-
 <?php
 session_start();
 
 include('header/headerLogout.html');
-
-
-
-
-
+require_once('dbconfig.php');
 ?>
+
+
 
 <ul>
 	<li><a href="Start.php" class="active" href="#Start">Start</a></li>
@@ -106,7 +103,7 @@ include('header/headerLogout.html');
 
 <article style="float:left; margin-left: 20px;">
     <section class="container"style="color: white; font-size: 130%; margin-top: 10px">
-      <form class="register"action="verifizieren2.php" method="POST">
+      <form class="register"action="verifizieren.php" method="POST">
         <table style="width:100%; text-align: left; font-size: 110%">
           <tr>
             <th> <label for="input" > Verifikationscode </label> </th>
@@ -117,6 +114,73 @@ include('header/headerLogout.html');
      </form>
     </section>
   </article>
+  
+  <?php
+
+	
+	/* Die Funktion kann nicht realisiert werden, da wir keinen mailserver haben.
+	
+	$to      = $_SESSION['email'];  //An wen
+	$subject = 'Verifikation';      //Titel
+	$message = '                    
+ 
+	Vielen Dank für die Erstellung deines Accounts!
+	
+	Um deine E-Mail Adresse zu verifizieren, musst du nur den folgenden Code 
+	
+	' . $verify . '	
+	
+	in dem Feld auf der Website eingeben und den "Bestätigen"- Button drücken.
+	
+	
+	Wir wünschen dir viel Spass eim Rätseln!
+	
+	-Dein Sudoku-Team
+	'; // Nachricht
+                     
+	$headers = 'From: postmaster@localhost' . "\r\n"; // Set from headers
+	mail($to, $subject, $message, $headers); // Senden
+	
+	*/
+	
+	$Text='	';
+	
+	if(isset($_POST['verify'])) 
+	{
+		if(isset($_POST['input']))
+		{
+			$uInput=(int)$_POST['input'];
+			
+			if($uInput==$_SESSION['verify'])
+			{
+				$statement = $pdo->prepare("UPDATE nutzer SET verifiziert = true WHERE Nutzername = :nname");
+				$result = $statement->execute(array('nname' => $_SESSION['nutzername']));
+				
+				$_SESSION['verifiziert']=true;
+				$Text='Deine E-Mail wurde erfolgreich verifiziert';
+				echo "<br>";
+				echo "<br>";
+				echo '<h2 style="color: green;text-align:left">' . $Text . '</h2>';
+				echo '<a href="Start.php" style="color:green">Klicke hier um zurückzukehren</a>';
+			}
+			else
+			{
+				$Text='Der eingegebene Sicherheitscode war inkorrekt.';
+				echo "<br>";
+				echo "<br>";
+				echo '<h2 style="color: red;text-align:left">' . $Text . '</h2>';
+					
+			}
+			
+		}
+		
+	}
+
+
+
+
+
+?>
 
 
 
