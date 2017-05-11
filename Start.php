@@ -143,6 +143,7 @@
         <a href="besttime.php"> Bestenliste Zeiten </a>
         <a href="bestgames.php"> Bestenliste Spiele </a>
         <a href="bestrank.php"> Bestenliste ELO </a>
+      </div>
     </li>
     <li><a href="Tutorial.php" class="active" href="#Regeln">Regeln</a></li>
     <li><a href="Impressum.php" class="active" href="#Impressum">Impressum</a></li>
