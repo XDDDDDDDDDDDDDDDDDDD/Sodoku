@@ -72,8 +72,8 @@
 
 
 .disabled {
-	pointer-events:none; //This makes it not clickable
-	opacity:0.6;         //This grays it out to look disabled
+	pointer-events:none; 
+	opacity:0.6;         
 }
 
 
@@ -84,41 +84,24 @@
 <?php
 session_start();
 
+include('header/headerLogout.html');
 
-  // echo $_SESSION['verify'];
 
 
-	if(isset($_SESSION['eingeloggt']) && $_SESSION['eingeloggt'])
-	{
-		include('header/headerLogout.html');
-		$act='active';
-
-		if($_SESSION['verifiziert']==false)
-		{
-			include('header/headerVeri.html');
-		}
-
-	}
-	else
-	{
-		include('header/headerLogin.php');
-		$act='disabled';
-
-	}
 
 
 ?>
 
 <ul>
 	<li><a href="Start.php" class="active" href="#Start">Start</a></li>
-	<li><a href="Profil.php"class=<?PHP echo $act; ?> href="#Profil">Profil</a></li>
+	<li><a href="Profil.php"class="active" href="#Profil">Profil</a></li>
 	<li><a href="Bestenliste"class="active" href="#Bestenliste">Bestenliste</a></li>
 	<li><a href="Tutorial.php" class="active" href="#Regeln">Regeln</a></li>
 	<li><a href="Impressum.php" class="active" href="#Impressum">Impressum</a></li>
 </ul>
 
 
-<h2 style="color: white; margin-left:14%"> <?php echo "Test" ?> </h2>
+<h2 style="color: white; margin-left:12%"> Code: <?php echo $_SESSION['verify']; ?> </h2>
 
 
 <article style="float:left; margin-left: 20px;">
