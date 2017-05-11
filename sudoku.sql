@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 10. Mai 2017 um 14:00
+-- Erstellungszeit: 12. Mai 2017 um 00:40
 -- Server-Version: 10.1.21-MariaDB
--- PHP-Version: 7.1.1
+-- PHP-Version: 7.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -36,7 +36,7 @@ CREATE TABLE `nutzer` (
   `Geschlecht` enum('nicht festgelegt','männlich','weiblich') COLLATE utf8_german2_ci NOT NULL DEFAULT 'nicht festgelegt',
   `RegistriertSeit` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `SpielerID` int(10) NOT NULL,
-  `Status` text COLLATE utf8_german2_ci
+  `Status` tinytext COLLATE utf8_german2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_german2_ci;
 
 --
@@ -44,7 +44,14 @@ CREATE TABLE `nutzer` (
 --
 
 INSERT INTO `nutzer` (`NutzerID`, `Nutzername`, `EchterName`, `NutzerPW`, `Mail`, `verifiziert`, `Geschlecht`, `RegistriertSeit`, `SpielerID`, `Status`) VALUES
-(1, 'admin', 'admin', '$2y$10$hmRQK8aEo.Gl0s.OixIX9.0ifakjz1Ht4QLrcP4qBAeAmNf8718.m', 'g@web.de', 0, 'männlich', '2017-05-10 10:06:24', 1, NULL);
+(1, 'admin', 'admin', '$2y$10$hmRQK8aEo.Gl0s.OixIX9.0ifakjz1Ht4QLrcP4qBAeAmNf8718.m', 'ayo@web.to', 1, 'männlich', '2017-05-10 10:06:24', 1, 'pizza\r\nyoo'),
+(2, 'Daxter', 'Jan', '$2y$10$P/LNeCde6Lk6o3WknZMgve2eUjnevy53SSmqNNjEPS99QIWifAA12', 'jan.getschmann@web.de', 1, 'männlich', '2017-05-10 13:23:59', 2, ''),
+(3, 'pizza', 'pizza', '$2y$10$wPQzdPn7ONj1jSJKQuguIu5kSR6Eo9Or2JwtNcVTKjc.e8lCoMspG', 'g@gaa.de', 1, 'männlich', '2017-05-10 14:31:13', 3, ''),
+(4, 'ayy', 'ayy', '$2y$10$cc2RKl6CxJ06vb3I9Z6ACu24vMaPaxpb/ckivrE4XVSmXEDXWU3de', 'g@ere.de', 1, 'männlich', '2017-05-10 15:07:44', 4, ''),
+(5, 'boss', 'boss', '$2y$10$zbL32W/9WRRvX62WZX08luqo8eAWS0J3hJ4iKT7A2RQECNdnyKa9O', 'gt@p.de', 1, 'männlich', '2017-05-10 15:10:19', 5, ''),
+(6, 'tzz', 'tzz', '$2y$10$BQ8eS2wMjqA5zJRNOZTqJ.ak40.OUucJ0LFfRHM50kEFq2Jvgi3aC', 'g@tzz.de', 1, 'männlich', '2017-05-11 08:01:43', 6, ''),
+(7, 'aya', 'aya', '$2y$10$rHeLjbiQiv7AIQC1bTm.ZOZD8gA2tIopOhBMoTe4LJOR1I2sHyOUq', 'g@gsgs.de', 1, 'männlich', '2017-05-11 08:36:36', 7, ''),
+(8, 'gaga', 'gagag', '$2y$10$apZTa7S3yp.yAIyiEQk65.5BboMFEKQmceur9m6DI8SRbmjG.dPKG', 'ggtt@t.de', 1, 'männlich', '2017-05-11 08:38:31', 8, '');
 
 --
 -- Trigger `nutzer`
@@ -74,11 +81,10 @@ CREATE TABLE `spiele` (
   `gewSpieleMittel` int(6) DEFAULT '0',
   `gewSpieleSchwer` int(6) DEFAULT '0',
   `gewSpieleExtrem` int(6) DEFAULT '0',
-  `durchZeit` double DEFAULT '0',
-  `durchZeitLeicht` double DEFAULT '0',
-  `durchZeitMittel` double DEFAULT '0',
-  `durchZeitSchwer` double DEFAULT '0',
-  `durchZeitExtrem` double DEFAULT '0',
+  `zeitLeicht` double DEFAULT '0',
+  `zeitMittel` double DEFAULT '0',
+  `zeitSchwer` double DEFAULT '0',
+  `zeitExtrem` double DEFAULT '0',
   `Elo` int(5) NOT NULL DEFAULT '1000',
   `DuelleGew` int(6) DEFAULT '0',
   `DuelleGes` int(6) DEFAULT '0'
@@ -88,8 +94,15 @@ CREATE TABLE `spiele` (
 -- Daten für Tabelle `spiele`
 --
 
-INSERT INTO `spiele` (`SpielerID`, `gewSpiele`, `gewSpieleLeicht`, `gewSpieleMittel`, `gewSpieleSchwer`, `gewSpieleExtrem`, `durchZeit`, `durchZeitLeicht`, `durchZeitMittel`, `durchZeitSchwer`, `durchZeitExtrem`, `Elo`, `DuelleGew`, `DuelleGes`) VALUES
-(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 0, 0);
+INSERT INTO `spiele` (`SpielerID`, `gewSpiele`, `gewSpieleLeicht`, `gewSpieleMittel`, `gewSpieleSchwer`, `gewSpieleExtrem`, `zeitLeicht`, `zeitMittel`, `zeitSchwer`, `zeitExtrem`, `Elo`, `DuelleGew`, `DuelleGes`) VALUES
+(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 0, 0),
+(2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 0, 0),
+(3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 0, 0),
+(4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 0, 0),
+(5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 0, 0),
+(6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 0, 0),
+(7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 0, 0),
+(8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 0, 0);
 
 --
 -- Indizes der exportierten Tabellen
@@ -115,12 +128,12 @@ ALTER TABLE `spiele`
 -- AUTO_INCREMENT für Tabelle `nutzer`
 --
 ALTER TABLE `nutzer`
-  MODIFY `NutzerID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `NutzerID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT für Tabelle `spiele`
 --
 ALTER TABLE `spiele`
-  MODIFY `SpielerID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `SpielerID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

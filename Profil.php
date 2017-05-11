@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+
   <style>
+  
 
     body{
        background-image: url("pictures/Tafel.jpg");
@@ -80,15 +83,26 @@
     dd,dt{
     padding: 5px;
     }
+	
+	
 
+ 
+	
   </style>
+  
+
 <body>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	
+	
 
 <?PHP
 
 	session_start();
-
-
+	
 
 ?>
 
@@ -101,6 +115,16 @@
       <p  style="text-align: right; margin-top:-55px; margin-right:75px; font-size:120%"> Hallo <?php echo $_SESSION['name']; ?> !</p>
     </div>
   </header>
+  
+  <?PHP
+  
+		if($_SESSION['verifiziert']==false)
+		{
+			include('header/headerVeri.html');
+		}
+  
+  
+  ?>
 
   <ul>
     <li><a href="Start.php" class="active" href="#Start">Start</a></li>
@@ -117,6 +141,9 @@
     <li><a href="Impressum.php" class="active" href="#Impressum">Impressum</a></li>
   </ul>
 
+  
+  
+  
   <h3 style="color:white; font-size: 150%"> <ins> Profil </ins> </h3>
 <!-- Zeigt die Persönlichen Daten des Spielers an -->
   <article style="float:left; margin-left: 10px">
@@ -139,16 +166,96 @@
         <tr>
           <th> Mail Adresse </th>
           <td> <?php echo htmlspecialchars($_SESSION['email']); ?> </td>
-          <td>  <button type="submit" name=mail id=mail style="width:100px"> E-Mail ändern </button> </td>
+          <td>  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#emailModal">E-Mail ändern</button> </td>
         </tr>
         <tr>
           <th> Status </th>
           <td> <textarea rows="5" cols="30" disabled="active"> <?php echo htmlspecialchars($_SESSION['status']); ?> </textarea> </td>
-          <td> <button type="submit" name=status id=status > Status ändern </button> </td>
+          <td> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#statusModal">Status ändern</button>  </td>
         </tr>
       </table>
     </section>
   </article>
+  
+ 
+  
+  <!-- Popup  zum Ändern der E-Mail-->
+	<div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="emailModalLabel">
+  <div class="modal-dialog" role="document">
+  <form method="POST" action="emailSetzen.php">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="emailModalLabel">E-Mail Adresse ändern</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="neueMail" class="control-label" align="margin">neue E-Mail Adresse:</label>
+            <input class="form-control" name="neueMail" id="neueMail";></input>
+          </div>
+        </form>
+      </div>	
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
+        <button type="submit" class="btn btn-primary" name="aendern" id="aendern" data-submit="modal">E-Mail ändern</button>
+      </div>
+    </div>
+	</form>
+  </div>
+</div>
+
+
+<script>
+
+$('#emailModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) //Button der das Modal auslößt
+  var modal = $(this)
+})
+
+
+</script>
+
+  
+  <!-- Popup  zum Ändern des Status-->
+	<div class="modal fade" id="statusModal" tabindex="-1" role="dialog" aria-labelledby="statusModalLabel">
+  <div class="modal-dialog" role="document">
+  <form method="POST" action="statusSetzen.php">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="statusModalLabel">Status ändern</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="statusText" class="control-label" align="margin">Status:</label>
+            <textarea class="form-control" name="statusText" id="statusText" maxlength='255';> <?PHP echo htmlspecialchars($_SESSION['status']); ?> </textarea>
+          </div>
+        </form>
+      </div>	
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
+        <button type="submit" class="btn btn-primary" name="aendern" id="aendern" data-submit="modal">Status ändern</button>
+      </div>
+    </div>
+	</form>
+  </div>
+</div>
+
+
+  
+<script>
+
+$('#statusModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) //Button der das Modal auslößt
+  var modal = $(this)
+})
+
+
+</script>
+  
+  
 
 <!-- Zeigt die Spielerstatistiken an -->
   <article style="float:right; margin-right: 600px">
@@ -200,19 +307,19 @@
           <table style="width:100%; text-align:left">
             <tr>
               <th> leicht </th>
-              <td> <?php echo $_SESSION['durchZeitLeicht']; ?> </td>
+              <td> <?php echo $_SESSION['zeitLeicht']; ?> </td>
             </tr>
             <tr>
               <th> mittel </th>
-              <td> <?php echo $_SESSION['durchZeitMittel']; ?> </td>
+              <td> <?php echo $_SESSION['zeitMittel']; ?> </td>
             </tr>
             <tr>
               <th> schwer </th>
-              <td> <?php echo $_SESSION['durchZeitSchwer']; ?> </td>
+              <td> <?php echo $_SESSION['zeitSchwer']; ?> </td>
             </tr>
             <tr>
               <th> extrem </th>
-              <td> <?php echo $_SESSION['durchZeitExtrem']; ?> </td>
+              <td> <?php echo $_SESSION['zeitExtrem']; ?> </td>
             </tr>
           </table>
         </dd>
