@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 12. Mai 2017 um 00:40
+-- Erstellungszeit: 11. Mai 2017 um 11:00
 -- Server-Version: 10.1.21-MariaDB
--- PHP-Version: 7.1.2
+-- PHP-Version: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -36,7 +36,7 @@ CREATE TABLE `nutzer` (
   `Geschlecht` enum('nicht festgelegt','männlich','weiblich') COLLATE utf8_german2_ci NOT NULL DEFAULT 'nicht festgelegt',
   `RegistriertSeit` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `SpielerID` int(10) NOT NULL,
-  `Status` tinytext COLLATE utf8_german2_ci NOT NULL
+  `Status` text COLLATE utf8_german2_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_german2_ci;
 
 --
@@ -44,14 +44,14 @@ CREATE TABLE `nutzer` (
 --
 
 INSERT INTO `nutzer` (`NutzerID`, `Nutzername`, `EchterName`, `NutzerPW`, `Mail`, `verifiziert`, `Geschlecht`, `RegistriertSeit`, `SpielerID`, `Status`) VALUES
-(1, 'admin', 'admin', '$2y$10$hmRQK8aEo.Gl0s.OixIX9.0ifakjz1Ht4QLrcP4qBAeAmNf8718.m', 'ayo@web.to', 1, 'männlich', '2017-05-10 10:06:24', 1, 'pizza\r\nyoo'),
-(2, 'Daxter', 'Jan', '$2y$10$P/LNeCde6Lk6o3WknZMgve2eUjnevy53SSmqNNjEPS99QIWifAA12', 'jan.getschmann@web.de', 1, 'männlich', '2017-05-10 13:23:59', 2, ''),
-(3, 'pizza', 'pizza', '$2y$10$wPQzdPn7ONj1jSJKQuguIu5kSR6Eo9Or2JwtNcVTKjc.e8lCoMspG', 'g@gaa.de', 1, 'männlich', '2017-05-10 14:31:13', 3, ''),
-(4, 'ayy', 'ayy', '$2y$10$cc2RKl6CxJ06vb3I9Z6ACu24vMaPaxpb/ckivrE4XVSmXEDXWU3de', 'g@ere.de', 1, 'männlich', '2017-05-10 15:07:44', 4, ''),
-(5, 'boss', 'boss', '$2y$10$zbL32W/9WRRvX62WZX08luqo8eAWS0J3hJ4iKT7A2RQECNdnyKa9O', 'gt@p.de', 1, 'männlich', '2017-05-10 15:10:19', 5, ''),
-(6, 'tzz', 'tzz', '$2y$10$BQ8eS2wMjqA5zJRNOZTqJ.ak40.OUucJ0LFfRHM50kEFq2Jvgi3aC', 'g@tzz.de', 1, 'männlich', '2017-05-11 08:01:43', 6, ''),
-(7, 'aya', 'aya', '$2y$10$rHeLjbiQiv7AIQC1bTm.ZOZD8gA2tIopOhBMoTe4LJOR1I2sHyOUq', 'g@gsgs.de', 1, 'männlich', '2017-05-11 08:36:36', 7, ''),
-(8, 'gaga', 'gagag', '$2y$10$apZTa7S3yp.yAIyiEQk65.5BboMFEKQmceur9m6DI8SRbmjG.dPKG', 'ggtt@t.de', 1, 'männlich', '2017-05-11 08:38:31', 8, '');
+(1, 'admin', 'admin', '$2y$10$hmRQK8aEo.Gl0s.OixIX9.0ifakjz1Ht4QLrcP4qBAeAmNf8718.m', 'g@web.de', 1, 'männlich', '2017-05-10 10:06:24', 1, NULL),
+(2, 'Daxter', 'Jan', '$2y$10$P/LNeCde6Lk6o3WknZMgve2eUjnevy53SSmqNNjEPS99QIWifAA12', 'jan.getschmann@web.de', 1, 'männlich', '2017-05-10 13:23:59', 2, NULL),
+(3, 'pizza', 'pizza', '$2y$10$wPQzdPn7ONj1jSJKQuguIu5kSR6Eo9Or2JwtNcVTKjc.e8lCoMspG', 'g@gaa.de', 1, 'männlich', '2017-05-10 14:31:13', 3, NULL),
+(4, 'ayy', 'ayy', '$2y$10$cc2RKl6CxJ06vb3I9Z6ACu24vMaPaxpb/ckivrE4XVSmXEDXWU3de', 'g@ere.de', 1, 'männlich', '2017-05-10 15:07:44', 4, NULL),
+(5, 'boss', 'boss', '$2y$10$zbL32W/9WRRvX62WZX08luqo8eAWS0J3hJ4iKT7A2RQECNdnyKa9O', 'gt@p.de', 1, 'männlich', '2017-05-10 15:10:19', 5, NULL),
+(6, 'tzz', 'tzz', '$2y$10$BQ8eS2wMjqA5zJRNOZTqJ.ak40.OUucJ0LFfRHM50kEFq2Jvgi3aC', 'g@tzz.de', 1, 'männlich', '2017-05-11 08:01:43', 6, NULL),
+(7, 'aya', 'aya', '$2y$10$rHeLjbiQiv7AIQC1bTm.ZOZD8gA2tIopOhBMoTe4LJOR1I2sHyOUq', 'g@gsgs.de', 1, 'männlich', '2017-05-11 08:36:36', 7, NULL),
+(8, 'gaga', 'gagag', '$2y$10$apZTa7S3yp.yAIyiEQk65.5BboMFEKQmceur9m6DI8SRbmjG.dPKG', 'ggtt@t.de', 1, 'männlich', '2017-05-11 08:38:31', 8, NULL);
 
 --
 -- Trigger `nutzer`
