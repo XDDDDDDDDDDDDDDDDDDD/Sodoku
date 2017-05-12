@@ -1,3 +1,4 @@
+<?PHP session_start(); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -99,12 +100,7 @@
 	
 	
 
-<?PHP
 
-	session_start();
-	
-
-?>
 
   <header>
     <form action="logout.php" method="POST" style=" float: right; margin-top:5px; margin-right:20px">
@@ -117,6 +113,7 @@
   </header>
   
   <?PHP
+  
   
 		if($_SESSION['verifiziert']==false)
 		{

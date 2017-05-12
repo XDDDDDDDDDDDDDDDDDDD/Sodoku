@@ -4,7 +4,7 @@
   <style>
 
     body{
-      background-image: url("pictures/Tafel.jpg");
+      background-image: url("pictures/tafel.jpg");
     }
 
     header{
@@ -26,160 +26,155 @@
       display: block;
     }
 
-    table {
-      margin:1em auto;
-      color:white;
-    }
-    td {
-      height:30px;
-      width:30px;
-      border:1px solid;
-      text-align:center;
-    }
-    td:first-child {
-      border-left:solid;
-    }
-    td:nth-child(3n) {
-      border-right:solid ;
-    }
-    tr:first-child {
-      border-top:solid;
-    }
-    tr:nth-child(3n) td {
-      border-bottom:solid ;
-    }
-
-    input.field[type=text]{
-      width: 15px;
-    }
+	table{ 
+	border-collapse: collapse; 
+	font-family: Calibri, sans-serif; 
+	}
+	
+	colgroup, tbody{ 
+	border: solid medium; 
+	}
+	
+	td{ 
+	border: solid thin; 
+	height: 2.0em; 
+	width: 2.0em; 
+	text-align: center; 
+	padding: 0; 
+	}
 
 
   </style>
 <body>
 
-  <header>
-    <form style=" float: right; margin-top:15px;">
-      <label for="uname">Username</label>
-      <input type="text" id="uname" name=uname >
-      <label for="pw">Password</label>
-      <input type="password" id="pw" name=password>
-      <button type="button"> Login </button>
-      <article style="display: block">
-        <a href="Registrieren.php" style="color: white " > Registrieren? </a>
-        <a href="pwvergessen" style="color: white; margin-left:200px" > Passwort vergessen? </a>
-      </article>
-    </form>
-    <div style="width: 1910px; border-bottom: 2px solid white;">
-      <h1> Sudoku Online </h1>
-    </div>
-  </header>
+ <script type="text/javascript" language="javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+ <script src="js/bootstrap.min.js"></script>
+ <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+
+
 
 <!-- Include der Navigationbar und des dazu gehörigen Styles -->
-  <?php
-    include("include/navigationbar.html");
-  ?>
+  
+  <?PHP
 
-  <table>
-    <tr>
-      <td> <input class="field" type="text" id="1.1" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="1.2" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="1.3" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="1.4" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="1.5" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="1.6" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="1.7" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="1.8" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="1.9" maxlength="1"> </td>
-    </tr>
-    <tr>
-      <td> <input class="field" type="text" id="2.1" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="2.2" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="2.3" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="2.4" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="2.5" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="2.6" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="2.7" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="2.8" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="2.9" maxlength="1"> </td>
-    </tr>
-    <tr>
-      <td> <input class="field" type="text" id="3.1" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="3.2" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="3.3" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="3.4" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="3.5" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="3.6" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="3.7" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="3.8" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="3.9" maxlength="1"> </td>
-    </tr>
-    <tr>
-      <td> <input class="field" type="text" id="4.1" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="4.2" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="4.3" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="4.4" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="4.5" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="4.6" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="4.7" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="4.8" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="4.9" maxlength="1"> </td>
-    </tr>
-    <tr>
-      <td> <input class="field" type="text" id="5.1" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="5.2" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="5.3" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="5.4" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="5.5" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="5.6" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="5.7" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="5.8" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="5.9" maxlength="1"> </td>
-    </tr>
-    <tr>
-      <td> <input class="field" type="text" id="6.1" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="6.2" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="6.3" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="6.4" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="6.5" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="6.6" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="6.7" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="6.8" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="6.9" maxlength="1"> </td>
-    </tr>
-    <tr>
-      <td> <input class="field" type="text" id="7.1" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="7.2" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="7.3" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="7.4" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="7.5" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="7.6" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="7.7" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="7.8" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="7.9" maxlength="1"> </td>
-    </tr>
-    <tr>
-      <td> <input class="field" type="text" id="8.1" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="8.2" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="8.3" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="8.4" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="8.5" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="8.6" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="8.7" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="8.8" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="8.9" maxlength="1"> </td>
-    </tr>
-    <tr>
-      <td> <input class="field" type="text" id="9.1" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="9.2" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="9.3" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="9.4" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="9.5" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="9.6" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="9.7" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="9.8" maxlength="1"> </td>
-      <td> <input class="field" type="text" id="9.9" maxlength="1"> </td>
-    </tr>
-  </table>
+	session_start();
+
+	if(isset($_SESSION['eingeloggt']) && $_SESSION['eingeloggt'])
+	{
+		include('header/headerLogout.html');
+
+		if($_SESSION['verifiziert']==false)
+		{
+			include('header/headerVeri.html');
+		}
+
+	}
+	else
+	{
+		include('header/headerLogin.php');
+	}
+
+
+		include("include/navigationbar.html");
+		include_once('SudokuGenerator.php');
+		
+		
+		
+		if(isset($_GET['d']))
+		{
+			$diff=$_GET['d'];
+			if($diff==1)
+			{
+				
+				$sudoku = new SudokuGenerator();
+				$sudoku->GenerateSudoku( SudokuGenerator::METRIC_EASY );
+				
+			}
+			elseif($diff==2)
+			{
+				$sudoku = new SudokuGenerator();
+				$sudoku->GenerateSudoku( SudokuGenerator::METRIC_MEDIUM );
+				
+			}
+			elseif($diff==3)
+			{
+				$sudoku = new SudokuGenerator();
+				$sudoku->GenerateSudoku( SudokuGenerator::METRIC_HARD );
+				
+			}
+			elseif($diff==4)
+			{
+				$sudoku = new SudokuGenerator();
+				$sudoku->GenerateSudoku( SudokuGenerator::METRIC_EXTREME );
+				
+			}
+			else
+			{
+				$sudoku = new SudokuGenerator();
+				$sudoku->GenerateSudoku( SudokuGenerator::METRIC_EASY );
+				
+			}
+		}
+		else
+		{
+			$sudoku = new SudokuGenerator();
+			$sudoku->GenerateSudoku( SudokuGenerator::METRIC_EASY );
+		}
+		
+		echo $sudoku->OutputString();
+		
+		
+  ?>
+  
+<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover();
+});
+</script>
+
+<table style="color:white" id='sudokuFeld'>
+  <caption>Sudoku</caption>
+  <colgroup ><col><col><col>
+  <colgroup><col><col><col>
+  <colgroup><col><col><col>
+  <tbody >
+   <tr> <div> </div> <td> <td> <td> <td> <td> <td> <td> <td> <td>
+   <tr> <td> <td> <td> <td> <td> <td> <td> <td> <td>
+   <tr> <td> <td> <td> <td> <td> <td> <td> <td> <td>
+  <tbody>
+   <tr> <td> <td> <td> <td> <td> <td> <td> <td> <td>
+   <tr> <td> <td> <td> <td> <td> <td> <td> <td> <td>
+   <tr> <td> <td> <td> <td> <td> <td> <td> <td> <td>
+  <tbody>
+   <tr> <td> <td> <td> <td> <td> <td> <td> <td> <td>
+   <tr> <td> <td> <td> <td> <td> <td> <td> <td> <td>
+   <tr> <td> <td> <td> <td> <td> <td> <td> <td> <td>
+</table>
+
+
+<script>
+
+
+var table = document.getElementById("sudokuFeld");
+if (table != null) {
+    for (var i = 0; i < table.rows.length; i++) {
+        for (var j = 0; j < table.rows[i].cells.length; j++)
+        table.rows[i].cells[j].onclick = function () 
+		{
+           tableText(this);
+        };
+    }
+}
+
+
+function tableText(tableCell) 
+{
+    
+}
+
+
+
+</script>
 
 
 

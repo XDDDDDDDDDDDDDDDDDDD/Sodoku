@@ -91,7 +91,7 @@
 
   <article style="float:left; margin-left:30%; margin-top:60px">
     <div class="difficulty">
-      <a target="_blank" href="Leicht">
+      <a href="Spiel.php?d=1">
         <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRsOUswpN22OQbjuhfnP-SZb4-B4zam9kVu1Al1T5QDie4ItXTH" alt="Trolltunga Norway" width="400" height="400">
       </a>
       <div class="desc" style="color:white">Leicht</div>
@@ -100,7 +100,7 @@
 
   <article style="float:right; margin-right:30%; margin-top:60px">
     <div class="difficulty">
-      <a target="_blank" href="Mittel">
+      <a href="Spiel.php?d=2">
         <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRsOUswpN22OQbjuhfnP-SZb4-B4zam9kVu1Al1T5QDie4ItXTH" alt="Forest" width="400" height="400">
       </a>
       <div class="desc" style="color:white">Mittel</div>
@@ -109,7 +109,7 @@
 
   <article style="float:left; display:block; margin-left:30%; margin-top:20px">
     <div class="difficulty">
-      <a target="_blank" href="Schwer">
+      <a href="Spiel.php?d=3">
         <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRsOUswpN22OQbjuhfnP-SZb4-B4zam9kVu1Al1T5QDie4ItXTH" alt="Northern Lights" width="400" height="400">
       </a>
       <div class="desc" style="color:white">Schwer</div>
@@ -118,7 +118,7 @@
 
   <article style="float:right; display:block; margin-right:30%; margin-top:20px">
     <div class="difficulty">
-      <a target="_blank" href="Extrem">
+      <a href="Spiel.php?d=4">
         <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRsOUswpN22OQbjuhfnP-SZb4-B4zam9kVu1Al1T5QDie4ItXTH" alt="Mountains" width="400" height="400">
       </a>
       <div class="desc" style="color:white">Extrem</div>
