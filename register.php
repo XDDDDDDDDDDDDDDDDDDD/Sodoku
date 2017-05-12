@@ -168,11 +168,10 @@ if(isset($_POST['register']))
 			$_SESSION['gewSpieleSchwer']=$user['gewSpieleSchwer'];
 			$_SESSION['gewSpieleExtrem']=$user['gewSpieleExtrem'];
 			
-			$_SESSION['durchZeit']=$user['durchZeit'];
-			$_SESSION['durchZeitLeicht']=$user['durchZeitLeicht'];
-			$_SESSION['durchZeitMittel']=$user['durchZeitMittel'];
-			$_SESSION['durchZeitSchwer']=$user['durchZeitSchwer'];
-			$_SESSION['durchZeitExtrem']=$user['durchZeitExtrem'];
+			$_SESSION['zeitLeicht']=$user['zeitLeicht'];
+			$_SESSION['zeitMittel']=$user['zeitMittel'];
+			$_SESSION['zeitSchwer']=$user['zeitSchwer'];
+			$_SESSION['zeitExtrem']=$user['zeitExtrem'];
 			
 			$_SESSION['Elo']=$user['Elo'];
 			$_SESSION['duelleGew']=$user['duelleGew'];
