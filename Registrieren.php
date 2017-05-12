@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+
+<!-- In dieser Datei wird die Seite für die Regestrierung erstellt. -->
 <html>
   <style>
 
