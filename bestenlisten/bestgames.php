@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+
+<!-- In dieser Datei wird die Seite erstellt, auf der die Bestenliste zu der Anzahl der gelösten Spiele angezeigt wird. -->
 <html>
 <head>
   <style>
@@ -51,6 +53,7 @@
 
 ?>
 
+<!-- In dem Header wird der Name der Seite angezeigt und die Möglichkeit geboten sich auszuloggen. --> 
   <header>
     <form action="logout.php" method="POST" style=" float: right; margin-top:5px; margin-right:20px">
       <button type="submit" name=logout id=logout> Logout </button>
@@ -68,7 +71,8 @@
   <h1 style="color:white; text-align: center"> Bestenliste Gelöste Spiele </h1>
 
 
-
+<!-- Im Folgenden sind die Tabellen zufinden, in denen die Anzahl der gelösten Spiele der Spieler angezeigt wird. Diese sind für die
+     Schwierigkeitsgrade Leicht, Mittel, Schwer und Extrem. -->
   <div class="scroll" style="float:left; margin-left:7%; margin-top:60px">
     <h2> Leicht </h2>
     <table style="width:auto; text-align:left">
@@ -109,8 +113,7 @@
     </table>
   </div>
 
-
-
+<!-- Ausgabe der Fußzeile, in der Unternehmensinformationen enthalten sind. -->
   <footer style="position: absolute; bottom: 5px">
     Copyright &copy; Getschmann, Kracht, Kuessner </br>
     31789 Hameln Sudoku für Dummies GmbH </br>
