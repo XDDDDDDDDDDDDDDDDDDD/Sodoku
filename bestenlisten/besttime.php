@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+
+<!-- In dieser Datei wird die Seite erstellt, auf der die User mit den am schnellsten gelösten Sudokus ausgegeben werden. -->
 <html>
 <head>
   <style>
@@ -47,10 +49,9 @@
 
 	session_start();
 
-
-
 ?>
 
+<!-- In dem Header wird der Name der Seite angezeigt und die Möglichkeit geboten sich auszuloggen. --> 
   <header>
     <form action="logout.php" method="POST" style=" float: right; margin-top:5px; margin-right:20px">
       <button type="submit" name=logout id=logout> Logout </button>
@@ -68,8 +69,8 @@
 
   <h1 style="color:white; text-align: center"> Bestenliste Zeit </h1>
 
-
-
+<!-- Im Folgenden werden in einzelnen Tabellen, für die jeweiligen Schwierigkeitsgrade (Leicht, Mittel, Schwer, Extrem) ausgegeben.
+     Darin enthalten sind der Username und die Bestzeit. -->
   <div class="scroll" style="float:left; margin-left:7%; margin-top:60px">
     <h2> Leicht </h2>
     <table style="width:auto; text-align:left">
@@ -110,8 +111,7 @@
     </table>
   </div>
 
-
-
+<!-- Ausgabe der Fußzeile, in der Unternehmensinformationen enthalten sind. -->
   <footer style="position: absolute; bottom: 5px">
     Copyright &copy; Getschmann, Kracht, Kuessner </br>
     31789 Hameln Sudoku für Dummies GmbH </br>
