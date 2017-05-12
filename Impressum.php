@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+
+<!-- In dieser Datei wird die Impressums-Seite erstellt. -->
 <html>
 <head>
   <style>
