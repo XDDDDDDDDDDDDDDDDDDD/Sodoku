@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- In dieser Datei wird die Profilbesucher-Seite erzeugt. -->
 <html>
 <head>
   <style>
@@ -41,11 +42,9 @@
 <?PHP
 
 	session_start();
-
-
-
 ?>
 
+<!-- In dem Header wird der Name der Seite angezeigt und die Möglichkeit geboten sich auszuloggen. --> 
   <header>
     <form action="logout.php" method="POST" style=" float: right; margin-top:5px; margin-right:20px">
       <button type="submit" name=logout id=logout> Logout </button>
@@ -156,12 +155,10 @@
           </table>
         </dd>
       </dl>
-
-
     </section>
   </article>
 
-
+<!-- Ausgabe der Fußzeile, in der Unternehmensinformationen enthalten sind. -->
   <footer style="position: absolute; bottom: 5px">
     Copyright &copy; Getschmann, Kracht, Kuessner </br>
     31789 Hameln Sudoku für Dummies GmbH </br>
