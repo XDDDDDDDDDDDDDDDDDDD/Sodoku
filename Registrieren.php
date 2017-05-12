@@ -64,6 +64,9 @@ session_start();
 
 ?>
 
+<!-- Im Header werden neben der Anzeige des Namens der Seite, die Möglichkeit geboten sich einzuloggen (mit Benutzername und Passwort) 
+     des Weiteren ist es möglich auf die Registrierungsseite weitergeleitet zu werden oder sein Passwort zurückzusetzen, wenn man es
+     vergessen hat. -->
  <header>
     <form action="login.php" method="POST" style="float:right; margin-top:15px;">
       <label for="uname">Username</label>
@@ -87,7 +90,8 @@ session_start();
   ?>
 
   <h3 style="color:white; font-size: 150%"> <ins> Registrieren </ins> </h3>
-
+	
+<!-- Ausgabe der zur Registrierung benötigten Felder, welche befüllt werden. -->
   <article style="float:left; margin-left: 10px">
     <section class="container"style="color: white; font-size: 130%">
       <form class="register"action="register.php" method="POST">
@@ -123,9 +127,7 @@ session_start();
     </section>
   </article>
 
-
-
-
+<!-- Ausgabe der Fußzeile, in der Unternehmensinformationen enthalten sind. -->
   <footer style="position: absolute; bottom: 5px">
     Copyright &copy; Getschmann, Kracht, Kuessner </br>
     31789 Hameln Sudoku für Dummies GmbH </br>
