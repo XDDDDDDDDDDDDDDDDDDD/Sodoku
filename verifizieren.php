@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- In dieser Datei wird die Seite erstellt, auf der man nach seiner Registrierung seine Mailadresse verifizieren kann. -->
 <html>
 <head>
 	<style>
@@ -71,10 +72,9 @@ require_once('dbconfig.php');
     include("include/navigationbar.html");
   ?>
 
-
 <h2 style="color: white; margin-left:12%"> Code: <?php echo $_SESSION['verify']; ?> </h2>
 
-
+<!-- Ausgabe vom EIngabefeld für den Verifizierungscode. -->
 <article style="float:left; margin-left: 20px;">
     <section class="container"style="color: white; font-size: 130%; margin-top: 10px">
       <form class="register"action="verifizieren.php" method="POST">
@@ -118,7 +118,8 @@ require_once('dbconfig.php');
 	*/
 	
 	$Text='	';
-	
+
+//Ausgabe des Verifizierungscode und Abfrage ob der Code korrekt eingegeben wurde. 
 	if(isset($_POST['verify'])) 
 	{
 		if(isset($_POST['input']))
@@ -158,8 +159,8 @@ require_once('dbconfig.php');
 
 
 
-
-	<footer style="position: absolute; bottom: 5px">
+<!-- Ausgabe der Fußzeile, in der Unternehmensinformationen enthalten sind. -->
+  <footer style="position: absolute; bottom: 5px">
     Copyright &copy; Getschmann, Kracht, Kuessner </br>
     31789 Hameln Sudoku für Dummies GmbH </br>
     Email: Dummies.Hsw@google.com
