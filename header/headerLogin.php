@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Diese Datei erzeugt den Login für den Header. -->
 <html>
 <head>
   <style>
@@ -30,6 +31,7 @@
    
   </style>
 <body>
+<!-- Abfrage ob die Logindaten korrekt sin. -->
 <?PHP
 
 	$nn='';
@@ -41,6 +43,7 @@
 	}
 
 ?>
+<!-- Ausgabe des Headers, in dem man sich einloggen kann, sich registrieren kann oder auch das Passwort zurücksetzen kann. -->
   <header>
   <label style="float:right;color: red;"><?PHP echo $txt;?></label><br>
     <form action="login.php" method="POST" style="float:right; margin-top:15px;">
