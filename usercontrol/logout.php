@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- In dieser Datei wird der Logout von der Seite abgebildet.-->
 <html>
 <head>
 </head>
