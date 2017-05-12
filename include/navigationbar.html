@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+
+<!-- In dieser Datei findet sich die Navigationbar, die in nahezu alle Seiten implementiert ist -->
 <html>
 <head>
   <style>
@@ -54,6 +56,8 @@ li.dropdown {
 </style>
 <body>
 
+  <!-- Die Abfrage überprüft ob ein Nutzer angemeldet ist. Ist dies der Fall so kann er auf der Navigationbar sein Profil aufrufen, andernfalls
+       wird der Reiter "Profil" disabled. -->
   <?PHP
 
   	$act;
@@ -71,6 +75,7 @@ li.dropdown {
 
   ?>
 
+  <!-- Die in der Navigationbar abgebildeten Reiter, samt den dazugehörigen Links sind hier dargestellt. -->
   <ul>
     <li><a href="Start.php" class="active" href="#Start">Start</a></li>
     <li><a href="Profil.php"class=<?PHP echo $act; ?> href="#Profil">Profil</a></li>
