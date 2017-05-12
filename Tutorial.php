@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+
+<!-- Diese Datei dient dazu dem Spieler die Regeln von Sudoku näher zu bringen. -->
 <html>
 <head>
   <style>
@@ -41,6 +43,8 @@
   </style>
 <body>
 
+<!-- Die Abfrage überprüft ob ein Nutzer angemeldet ist. Ist dies der Fall so kann er auf der Navigationbar sein Profil aufrufen, andernfalls
+       wird der Reiter "Profil" disabled. Des Weiteren wird der Header entsprechend angepasst. -->
 <?PHP
 
 	session_start();
@@ -60,16 +64,14 @@
 
 	}
 
-
-
 ?>
-
 
 <!-- Include der Navigationbar und des dazu gehörigen Styles -->
   <?php
     include("include/navigationbar.html");
   ?>
 
+<!-- Ausgabe der Spielregeln von Sudoku -->
   <article style="float:left; color: white; width:50%">
     <h1 style="font-size: 220%; text-decoration: underline"> So gehts! </h1>
     <p style="font-size:130%">
@@ -86,6 +88,7 @@
       Das Spiel ist beendet, wenn alle Kästchen korrekt gefüllt sind. </p>
   </article>
 
+<!-- Ausgabe eines Bildes, in dem ein gelöstes Sudoku gezeigt wird. --> 
   <article>
     <div class="pic">
       <h2 style="color:white"> Beispiel: </h2>
@@ -93,9 +96,7 @@
     </div>
   </article>
 
-
-
-
+<!-- Ausgabe der Fußzeile, in der Unternehmensinformationen enthalten sind. -->
   <footer style="position: absolute; bottom: 5px">
     Copyright &copy; Getschmann, Kracht, Kuessner </br>
     31789 Hameln Sudoku für Dummies GmbH </br>
