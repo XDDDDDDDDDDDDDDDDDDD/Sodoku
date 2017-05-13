@@ -4,17 +4,17 @@ require_once "SudokuSolver.php";
 class SudokuGenerator extends SudokuSolver
 {
     public $EleArray = NULL;
-    const METRIC_EASY = 30;
-    const METRIC_MEDIUM = 24;
-    const METRIC_HARD = 19;
-	const METRIC_EXTREME = 14;
+    const METRIC_EASY = 45;
+    const METRIC_MEDIUM = 33;
+    const METRIC_HARD = 21;
+	const METRIC_EXTREME = 15;
     public function __construct()
     {
         $this->EleArray();
         parent::__construct();
     }
     /*
-    Creates an array of possible (row, col) combinations. So that uniquely a random elemnt can be selected
+    Creates an array of possible (row, col) combinations. So that uniquely a random element can be selected
      */
     public function EleArray() 
     {
@@ -35,9 +35,10 @@ class SudokuGenerator extends SudokuSolver
         unset($this->EleArray[$ele]);
         for ( $i = 1; $i <= 9; $i++ )
         {
-            if( $this->checkValid($randRow, $randCol, $i) )
+			$p=rand(1,9);
+            if( $this->checkValid($randRow, $randCol, $p) )
             {
-                $this->_oSudoku[$randRow][$randCol] = $i;
+                $this->_oSudoku[$randRow][$randCol] = $p;
                 break;
             }
         }
@@ -45,11 +46,12 @@ class SudokuGenerator extends SudokuSolver
     public function GenerateSudoku( $difficulty )
     {
         $this->EleArray();
-        for( $i = 0; $i < $difficulty; $i++ )
+		for( $i = 0; $i < $difficulty; $i++ )
             $this->FillRandomValue();
-        do {
+		        do {
             $this->FillRandomValue();
             $this->Solve();
         } while( $this->HasUnique() === self::NOT_UNIQUE );
+        
     }
 }
