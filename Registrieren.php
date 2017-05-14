@@ -41,19 +41,18 @@
       width: auto;
     }
 
-    form.register
-	{
-	padding: 8px 5px;
-	font-size: 24px;
-	border: 1px solid rgb(28, 108, 122);
-	margin-bottom: 10px;
-	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
-	border-radius: 3px;
-	box-shadow:
-		0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,
-		0px 0px 0px 3px rgb(254, 254, 254),
-		0px 5px 3px 3px rgb(210, 210, 210);
-	transition: all 0.2s linear;
+    form.register{
+	     padding: 8px 5px;
+	     font-size: 24px;
+	     border: 1px solid rgb(28, 108, 122);
+	     margin-bottom: 10px;
+	     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+	     border-radius: 3px;
+	     box-shadow:
+		   0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,
+		   0px 0px 0px 3px rgb(254, 254, 254),
+		   0px 5px 3px 3px rgb(210, 210, 210);
+	     transition: all 0.2s linear;
     }
   </style>
 
@@ -71,7 +70,7 @@ include("navigationbar.html");
 
 
   <h3 style="color:white; font-size: 150%"> <ins> Registrieren </ins> </h3>
-	
+
 <!-- Ausgabe der zur Registrierung benötigten Felder, welche befüllt werden. -->
   <article style="float:left; margin-left: 10px">
     <section class="container"style="color: white; font-size: 130%">
@@ -96,11 +95,11 @@ include("navigationbar.html");
           </tr>
           <tr>
             <th> <label for="password" >Passwort </label> </th>
-            <td> <input type="text" id="password" name=password> </td>
+            <td> <input type="password" id="password" name=password> </td>
           </tr>
           <tr>
             <th> <label for="password_confirm" >Passwort wiederholen </label> </th>
-            <td> <input type="text" id="password_confirm" name=password_confirm> </td>
+            <td> <input type="password" id="password_confirm" name=password_confirm> </td>
           </tr>
         </table>
         <button type="submit" style="margin-left: 200px" id='register' name='register'> Registrieren </button>

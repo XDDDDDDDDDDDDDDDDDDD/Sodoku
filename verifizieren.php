@@ -27,32 +27,10 @@
 			display: block;
 		}
 
-		div.difficulty {
-			margin: 5px;
-			border: 1px solid #ccc;
-			margin-left: 40%;
-			width: 180px;
+		.disabled {
+			pointer-events:none;
+			opacity:0.6;
 		}
-
-		div.difficulty:hover {
-			border: 1px solid #777;
-		}
-
-		div.difficulty img {
-			width: 100%;
-			height: auto;
-		}
-
-		div.desc {
-			padding: 15px;
-			text-align: center;
-		}
-
-
-.disabled {
-	pointer-events:none; 
-	opacity:0.6;         
-}
 
 
 	</style>
@@ -86,49 +64,49 @@ include("navigationbar.html");
      </form>
     </section>
   </article>
-  
+
   <?php
 
-	
+
 	/* Die Funktion kann nicht realisiert werden, da wir keinen mailserver haben.
-	
+
 	$to      = $_SESSION['email'];  //An wen
 	$subject = 'Verifikation';      //Titel
-	$message = '                    
- 
+	$message = '
+
 	Vielen Dank für die Erstellung deines Accounts!
-	
-	Um deine E-Mail Adresse zu verifizieren, musst du nur den folgenden Code 
-	
-	' . $verify . '	
-	
+
+	Um deine E-Mail Adresse zu verifizieren, musst du nur den folgenden Code
+
+	' . $verify . '
+
 	in dem Feld auf der Website eingeben und den "Bestätigen"- Button drücken.
-	
-	
+
+
 	Wir wünschen dir viel Spass eim Rätseln!
-	
+
 	-Dein Sudoku-Team
 	'; // Nachricht
-                     
+
 	$headers = 'From: postmaster@localhost' . "\r\n"; // Set from headers
 	mail($to, $subject, $message, $headers); // Senden
-	
+
 	*/
-	
+
 	$Text='	';
 
-//Ausgabe des Verifizierungscode und Abfrage ob der Code korrekt eingegeben wurde. 
-	if(isset($_POST['verify'])) 
+//Ausgabe des Verifizierungscode und Abfrage ob der Code korrekt eingegeben wurde.
+	if(isset($_POST['verify']))
 	{
 		if(isset($_POST['input']))
 		{
 			$uInput=(int)$_POST['input'];
-			
+
 			if($uInput==$_SESSION['verify'])
 			{
 				$statement = $pdo->prepare("UPDATE nutzer SET verifiziert = true WHERE Nutzername = :nname");
 				$result = $statement->execute(array('nname' => $_SESSION['nutzername']));
-				
+
 				$_SESSION['verifiziert']=true;
 				$Text='Deine E-Mail wurde erfolgreich verifiziert';
 				echo "<br>";
@@ -142,11 +120,11 @@ include("navigationbar.html");
 				echo "<br>";
 				echo "<br>";
 				echo '<h2 style="color: red;text-align:left">' . $Text . '</h2>';
-					
+
 			}
-			
+
 		}
-		
+
 	}
 
 

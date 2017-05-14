@@ -5,7 +5,7 @@
 
 
   <style>
-  
+
 
     body{
        background-image: url("pictures/Tafel.jpg");
@@ -31,52 +31,6 @@
       display: block;
     }
 
-    ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    }
-
-    li {
-    float: left;
-    }
-
-    li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    }
-
-    li a:hover {
-    background-color: #111;
-    }
-	  
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      min-width: 160px;
-      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-      z-index: 1;
-    }
-
-    .dropdown-content a {
-      color: white;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-      text-align: left;
-    }
-
-    .dropdown-content a:hover {background-color: black}
-
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-	  
-
     td, th {
     padding: 5px;
     }
@@ -84,40 +38,36 @@
     dd,dt{
     padding: 5px;
     }
-	
-	
 
- 
-	
   </style>
-  
+
 
 <body>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<link href="css/bootstrap.min.css" rel="stylesheet">
-	
-	
-  
+
+
+
   <?PHP
-  
-  
+
+
 		include_once('header/headerLogout.html');
-  
+
 		if($_SESSION['verifiziert']==false)
 		{
 			include('header/headerVeri.html');
 		}
-		
+
 		include('navigationbar.html');
-  
+
   ?>
 
-  
-  
-  
-  <h3 style="color:white; font-size: 150%"> <ins> Profil </ins> </h3>
+
+
+
+  <h3 style="color:white; font-size: 150%; margin-left:10px"> <ins> Profil </ins> </h3>
 <!-- Zeigt die Persönlichen Daten des Spielers an -->
   <article style="float:left; margin-left: 10px">
     <h3 style="color:green; font-size:120%"> <ins> Persönliche Daten </ins>
@@ -149,9 +99,9 @@
       </table>
     </section>
   </article>
-  
- 
-  
+
+
+
   <!-- Popup  zum Ändern der E-Mail-->
 	<div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="emailModalLabel">
   <div class="modal-dialog" role="document">
@@ -168,7 +118,7 @@
             <input class="form-control" name="neueMail" id="neueMail";></input>
           </div>
         </form>
-      </div>	
+      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
         <button type="submit" class="btn btn-primary" name="aendern" id="aendern" data-submit="modal">E-Mail ändern</button>
@@ -189,7 +139,7 @@ $('#emailModal').on('show.bs.modal', function (event) {
 
 </script>
 
-  
+
   <!-- Popup  zum Ändern des Status-->
 	<div class="modal fade" id="statusModal" tabindex="-1" role="dialog" aria-labelledby="statusModalLabel">
   <div class="modal-dialog" role="document">
@@ -206,7 +156,7 @@ $('#emailModal').on('show.bs.modal', function (event) {
             <textarea class="form-control" name="statusText" id="statusText" maxlength='255';> <?PHP echo htmlspecialchars($_SESSION['status']); ?> </textarea>
           </div>
         </form>
-      </div>	
+      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
         <button type="submit" class="btn btn-primary" name="aendern" id="aendern" data-submit="modal">Status ändern</button>
@@ -217,7 +167,7 @@ $('#emailModal').on('show.bs.modal', function (event) {
 </div>
 
 
-  
+
 <script>
 
 $('#statusModal').on('show.bs.modal', function (event) {
@@ -227,8 +177,8 @@ $('#statusModal').on('show.bs.modal', function (event) {
 
 
 </script>
-  
-  
+
+
 
 <!-- Zeigt die Spielerstatistiken an -->
   <article style="float:right; margin-right: 600px">

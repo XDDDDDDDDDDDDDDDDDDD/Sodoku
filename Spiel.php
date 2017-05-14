@@ -5,7 +5,7 @@
 
     body{
       background-image: url("pictures/tafel.jpg");
-	  
+
     }
 
     header{
@@ -51,7 +51,7 @@
 	}
 
 #binny .cell {
-	
+
 	background-color: #fff;
 	font: 2em bold;
 	width: 1.3em;
@@ -95,7 +95,7 @@
 
 #binny ul {
 	margin: -1em 0;
-	
+
 	}
 
 #binny li {
@@ -110,25 +110,25 @@
 
   </style>
 <body>
- 
-  
+
+
   <?PHP
 
 	session_start();
-	
+
 	const EASY = 50;
 	const MEDIUM = 37;
 	const HARD = 25;
 	const EXTREME = 17;
 
-	
-	
+
+
 	if(isset($_POST['fertig']))
 	{
 		$feld=$_SESSION['sudoku'];
 		$feldArray=str_split($feld);
 		$userSet='';
-		
+
 		for($i=0;$i<=80;$i++)
 		{
 			if(!empty($_POST[$i]))
@@ -140,26 +140,26 @@
 				$userSet .="0";
 			}
 		}
-		
+
 		$userField=str_split($userSet);
-		
+
 		if($userSet==$_SESSION['lösung'])   //SIEG
 		{
 			$post=microtime(true);
 			$time=$post-$_SESSION['pre'];
 			unset($_SESSION['pre']);
 			$_SESSION['time']=intval($time);
-			
+
 			header('Location: sieg.php');
-			
+
 		}
 		else   //Da war was falsch
 		{
 			$userSetFields=array_diff_assoc($userField, $feldArray);
 			$setField=true;
 		}
-		
-		
+
+
 	}
 	elseif(isset($_POST['neu']))
 	{
@@ -169,14 +169,14 @@
 		unset($_SESSION['lösung']);
 		unset($_SESSION['pre']);
 		header('Location: Spiel.php?d='.$help);
-		
+
 	}
 	else
 	{
-		
+
 		include('spielfeld.php');
-		
-		
+
+
 		if(isset($_GET['d']))
 		{
 			$string="000000000";
@@ -189,7 +189,7 @@
 			$array[6]=$reihe7=str_split($string);
 			$array[7]=$reihe8=str_split($string);
 			$array[8]=$reihe9=str_split($string);
-			
+
 			for($i=1;$i<9;$i++)
 			{
 				$x=rand(0,8);
@@ -204,7 +204,7 @@
 				}
 			}
 			$puzzle="";
-			
+
 			for($c=0;$c<8;$c++)
 			{
 				for($r=0;$r<8;$r++)
@@ -212,15 +212,15 @@
 					$puzzle .= $array[$c][$r];
 				}
 			}
-			
-			
+
+
 			$sudoku = new Sudoku();
 			$lösung= $sudoku->solve($puzzle);
 			$_SESSION['lösung']=$lösung;
-			
+
 			$verarbeiten=str_split($lösung);
-			
-			
+
+
 			$diff=$_GET['d'];
 			$_SESSION['diff']=$diff;
 			if($diff==1)
@@ -232,9 +232,9 @@
 					}
 					while($verarbeiten[$weg]==0);
 					$verarbeiten[$weg]=0;
-					
+
 				}
-				
+
 			}
 			elseif($diff==2)
 			{
@@ -245,9 +245,9 @@
 					}
 					while($verarbeiten[$weg]==0);
 					$verarbeiten[$weg]=0;
-					
+
 				}
-				
+
 			}
 			elseif($diff==3)
 			{
@@ -258,9 +258,9 @@
 					}
 					while($verarbeiten[$weg]==0);
 					$verarbeiten[$weg]=0;
-					
+
 				}
-				
+
 			}
 			elseif($diff==4)
 			{
@@ -271,9 +271,9 @@
 					}
 					while($verarbeiten[$weg]==0);
 					$verarbeiten[$weg]=0;
-					
+
 				}
-				
+
 			}
 			else
 			{
@@ -284,22 +284,22 @@
 					}
 					while($verarbeiten[$weg]==0);
 					$verarbeiten[$weg]=0;
-					
+
 				}
-				
+
 			}
 		}
 		else
 		{
-			
+
 		}
-		
+
 		$feld = implode($verarbeiten);
-		
+
 		$_SESSION['sudoku']=$feld;
-		
+
 	}
-	
+
 	if(isset($_SESSION['eingeloggt']) && $_SESSION['eingeloggt'])
 	{
 		include('header/headerLogout.html');
@@ -317,12 +317,12 @@
 
 
 	include("navigationbar.html");
-	
+
 	$_SESSION['pre']=microtime(true);
 
   ?>
-  
-<div id="binny">
+
+<div id="binny" style="margin-left:35%; margin-top:5%">
 <form name="form" action="Spiel.php" method="POST">
 <table class="rand">
 <tbody><tr>
@@ -524,16 +524,16 @@
 
 if($setField)
 {
-	foreach($userSetFields as $key=>$value) 
+	foreach($userSetFields as $key=>$value)
 	{
 		echo '<script type="text/javascript">';
 		echo 'document.getElementById("'.$key.'").value = "'.$value.'";';
 		echo '</script>';
-		
+
 	}
-	
+
 	echo '<td><font color="red">Das war nicht korrekt...versucht nochmal :)</font></td>';
-	
+
 }
 
 ?>
