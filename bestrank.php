@@ -72,9 +72,10 @@ if(isset($_SESSION['eingeloggt']) && $_SESSION['eingeloggt'])
 
 	include("navigationbar.html");
 	
+	
   ?>
 
-  <h1 style="color:white; text-align: center"> Bestenlisten ELO und Rang (WIP)</h1>
+  <h1 style="color:white; text-align: center"> Bestenlisten ELO und Rang</h1>
 
 
 
@@ -86,6 +87,24 @@ if(isset($_SESSION['eingeloggt']) && $_SESSION['eingeloggt'])
         <td> ELO </td>
         <td> Rang   </td>
       </tr>
+	   <?PHP
+			 //ELO
+			$statement = $pdo->prepare("SELECT nutzer.EchterName, spiele.Elo FROM nutzer, spiele WHERE nutzer.SpielerID=spiele.SpielerID ORDER BY spiele.Elo desc");
+			$result = $statement->execute();
+			$liste = $statement->fetchAll();
+			$r=1;
+			
+			
+			foreach($liste as $row) //Ausgabe in HTML
+			{
+				echo "<tr>";
+				echo '<td><a style="color:white" href="visitprofile.php?u=' . $row["EchterName"] . '">'. $row["EchterName"] . '</a></td>';
+				echo '<td>'. $row["Elo"] . '</td>';
+				echo '<td>'. $r . '</td>';
+				echo "</tr>";
+			$r++;
+			}
+	  ?>
     </table>
   </div>
 
