@@ -30,53 +30,7 @@
       margin-top: 5px;
       display: block;
     }
-
-    ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    }
-
-    li {
-    float: left;
-    }
-
-    li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    }
-
-    li a:hover {
-    background-color: #111;
-    }
 	  
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      min-width: 160px;
-      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-      z-index: 1;
-    }
-
-    .dropdown-content a {
-      color: white;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-      text-align: left;
-    }
-
-    .dropdown-content a:hover {background-color: black}
-
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-	  
-
     td, th {
     padding: 5px;
     }
@@ -84,8 +38,7 @@
     dd,dt{
     padding: 5px;
     }
-	
-	
+		
   </style>
   
   <body>
@@ -116,6 +69,18 @@
 	}
 
   ?>
+	  
+  <table style="color:white; font-size:120% ">
+    <tr>
+      <td> Zeit </td>
+      <td> Schwierigkeitsgrad </td>
+      <td> gelöste Sudokus </td>
+    </tr>
+    <tr>
+      <td> 1:50:22 </td>
+      <td> Extrem </td>
+      <td> 250 </td>
+  </table>
   
   
   
