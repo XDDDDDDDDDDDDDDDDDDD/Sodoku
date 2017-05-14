@@ -114,7 +114,7 @@ include("navigationbar.html");
 				echo '<h2 style="color: green;text-align:left">' . $Text . '</h2>';
 				echo '<a href="Start.php" style="color:green">Klicke hier um zurückzukehren</a>';
 			}
-			else
+			else  //inkorrekter Code 
 			{
 				$Text='Der eingegebene Sicherheitscode war inkorrekt.';
 				echo "<br>";

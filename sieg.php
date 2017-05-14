@@ -43,7 +43,7 @@
   
   <body>
   
-  <?PHP
+  <?PHP  //header
   if(isset($_SESSION['eingeloggt']) && $_SESSION['eingeloggt'])
 	{
 		include('header/headerLogout.html');
@@ -67,6 +67,8 @@
 
   ?>
 	  
+	  
+	  <!--  Gibt Anzahl der gewonnenen Spiele, die Zeit und den schwierigkeitsgrad aus -->
   <table style="color:white; font-size:120% ">
     <tr> <br><br>
       <td> Zeit </td>
@@ -94,10 +96,10 @@
 		$_SESSION['gewSpiele']=$_SESSION['gewSpiele']+1;
 		switch($_SESSION['diff'])
 		{
-			case 1: 	
+			case 1: 	//Leicht
 						$_SESSION['gewSpieleLeicht']=$_SESSION['gewSpieleLeicht']+1;
 						
-						$statement = $pdo->prepare("UPDATE spiele SET gewSpieleLeicht = :gew WHERE SpielerID = :sid");
+						$statement = $pdo->prepare("UPDATE spiele SET gewSpieleLeicht = :gew WHERE SpielerID = :sid"); //Schreibt neue Anzahl gewonnener Spiele des schwierigkeitsgrads in die DB
 						$statement->bindParam(':sid', $_SESSION['spielerid']);
 						$statement->bindParam(':gew', $_SESSION['gewSpieleLeicht']);
 						$statement->execute();
@@ -106,14 +108,14 @@
 					{
 						echo "<td> Neuer Rekord!</td>";
 						
-						$statement = $pdo->prepare("UPDATE spiele SET zeitLeicht = :zeit WHERE SpielerID = :sid");
+						$statement = $pdo->prepare("UPDATE spiele SET zeitLeicht = :zeit WHERE SpielerID = :sid");   //schreibt Rekordzeit in die DB
 						$statement->bindParam(':sid', $_SESSION['spielerid']);
 						$statement->bindParam(':zeit', $_SESSION['time']);
 						$statement->execute();
 						
 					}
 					break; 
-			case 2: 
+			case 2: //mittel
 						$_SESSION['gewSpieleMittel']=$_SESSION['gewSpieleMittel']+1;
 						
 						$statement = $pdo->prepare("UPDATE spiele SET gewSpieleMittel = :gew WHERE SpielerID = :sid");
@@ -132,7 +134,7 @@
 					}
 					
 					break; 
-			case 3: 
+			case 3:  //schwer
 						$_SESSION['gewSpieleSchwer']=$_SESSION['gewSpieleSchwer']+1;
 						
 						$statement = $pdo->prepare("UPDATE spiele SET gewSpieleSchwer = :gew WHERE SpielerID = :sid");
@@ -151,7 +153,7 @@
 					}
 					
 					break; 
-			case 4: 
+			case 4:  //extrem
 						$_SESSION['gewSpieleExtrem']=$_SESSION['gewSpieleExtrem']+1;
 						
 						$statement = $pdo->prepare("UPDATE spiele SET gewSpieleExtrem = :gew WHERE SpielerID = :sid");
@@ -172,22 +174,22 @@
 					break;
 		}
 		
-		$statement = $pdo->prepare("UPDATE spiele SET gewSpiele = :gew WHERE SpielerID = :sid");
+		$statement = $pdo->prepare("UPDATE spiele SET gewSpiele = :gew WHERE SpielerID = :sid"); //Schreibt neue Anzahl gewonnener Spiele in die DB
 		$statement->bindParam(':sid', $_SESSION['spielerid']);
 		$statement->bindParam(':gew', $_SESSION['gewSpiele']);
 		$statement->execute();
 		
-		unset($_SESSION['sudoku']);
+		unset($_SESSION['sudoku']);  //löscht die Session-Variablen
 		unset($_SESSION['diff']);
 		unset($_SESSION['lösung']);
 		unset($_SESSION['time']);
 		
-		echo "<td><a href='Start.php' style='color:white'>Neues Spiel?</a></td>";
+		echo "<td><a href='Start.php' style='color:white'>Neues Spiel?</a></td>";    //Zum Hauptbildschirm
 		
 	}
-	else
+	else  //nicht eingeloggt
 	{
-		echo "<td>Du bist nicht angemeldet!</td>";
+		echo "<td>Du bist nicht angemeldet!</td>";             //links zum registrieren & anmelden
 		echo "<td><a href='Registrieren.php' style='color:white'>Zum Registrieren</a></td>";
 		echo "<td><a href='Start.php' style='color:white'>Zum Anmelden</a></td>";
 	}

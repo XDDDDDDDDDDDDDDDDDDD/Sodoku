@@ -7,10 +7,12 @@
 <?php
 	session_start();
 
+	
+	//wird vom Logout-Button aufgerufen
 	if(isset($_POST['logout']))
 	{
-		session_destroy();
-		header('Location: Start.php');
+		session_destroy();  //Ausloggen
+		header('Location: Start.php');  //zurück zum Start
 	}
 
 ?>

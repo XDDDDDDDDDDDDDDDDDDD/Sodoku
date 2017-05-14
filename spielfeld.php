@@ -1,10 +1,11 @@
-<?php
+<?php  //Nutzt einen von Peter Norvig entwickelten Algorithmus zum Berechnen des Sudokus (http://www.norvig.com/sudoku.html)
 
 
-error_reporting(0);  //Wird benötigt da ein paar Warnings geworfen werden, die aber irrelevant sind.
+error_reporting(0);  //Wird benötigt, da ein paar Warnings geworfen werden, die aber irrelevant sind.
 
 
-class Sudoku {
+class Sudoku 
+{
     private $digits;
     private $rows;
     private $cols;
@@ -16,9 +17,10 @@ class Sudoku {
     private $neliminations;
     private $nsearches;
 	
-    function __construct() {
+    function __construct()  //Konstruktor
+	{
 		
-        $this->rows = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I');
+        $this->rows = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I');   //Feld wird definiert
         $this->cols = array('1', '2', '3', '4', '5', '6', '7', '8', '9');
         $this->digits = "123456789";
         $this->squares = $this->cross($this->rows, $this->cols);
@@ -26,7 +28,7 @@ class Sudoku {
         $this->neliminations = 0;
         $this->nsearches = 0;
         $this->unitlist = array();
-        $rrows = array(array('A', 'B', 'C'), array('D', 'E', 'F'), array('G', 'H', 'I'));
+        $rrows = array(array('A', 'B', 'C'), array('D', 'E', 'F'), array('G', 'H', 'I'));  //Mögliche Reihen und Blöcke
         $ccols = array(array('1', '2', '3'), array('4', '5', '6'), array('7', '8', '9'));
         for ($i = 0; $i < sizeof($this->cols); $i++) {
             array_push($this->unitlist, $this->cross($this->rows, $this->cols[$i]));
@@ -72,6 +74,8 @@ class Sudoku {
         }
         return ($result ? $values : false);
     }
+	
+	
     private function cross($A, $B) {
         $C = array();
         for ($i = 0; $i < sizeof($A); $i++) {
@@ -81,6 +85,8 @@ class Sudoku {
         }
         return $C;
     }
+	
+	//Eliminiert nicht mögliche Zahlen
     private function eliminate(&$values, $sq, $dig) {
         $this->neliminations++;
         if (empty($dig) OR strpos($values[$sq], $dig) === false) {
@@ -139,6 +145,8 @@ class Sudoku {
         }
         return $values;
     }
+	
+	//Sucht mögliche Werte, die eingefügt werden könnten
     private function search($values) {
         $this->nsearches++;
         if (!$values) {
@@ -168,6 +176,8 @@ class Sudoku {
         }
         return false;
     }
+	
+	//Funktion zum lösen durch Backtracking
     public function solve($puzzle) {
         $resolution = "";
         $values = $this->search($this->parse_grid($puzzle));

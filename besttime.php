@@ -69,10 +69,11 @@ if(isset($_SESSION['eingeloggt']) && $_SESSION['eingeloggt'])
 	
   ?>
 
+  <!-- Überschrift -->
   <h1 style="color:white; text-align: center"> Bestenliste Zeit </h1>
 
 
-
+ <!-- Holt sich per Datenbankabfrage die Daten für die Bestenliste (Zeit) und generiert daraus die Tabelle -->
   <div class="scroll" style="float:left; margin-left:7%; margin-top:60px">
     <h2> Leicht </h2>
     <table style="width:auto; text-align:left">
@@ -80,13 +81,15 @@ if(isset($_SESSION['eingeloggt']) && $_SESSION['eingeloggt'])
         <th> Name </th>
         <th> Zeit </th>
     </tr>
-	  <?PHP
+	  <?PHP     //Schnellste Zeit für den Schwierigkeitsgrad leicht
 			
+			//Datenbankabfrage
 			$statement = $pdo->prepare("SELECT nutzer.EchterName, spiele.zeitLeicht FROM nutzer, spiele WHERE nutzer.SpielerID=spiele.SpielerID AND spiele.zeitLeicht<999999 ORDER BY spiele.zeitLeicht asc");
 			$result = $statement->execute();
 			$liste = $statement->fetchAll();
 			
 			
+			//Generieren des HTML
 			foreach($liste as $row)
 			{
 				echo "<tr>";
@@ -106,7 +109,7 @@ if(isset($_SESSION['eingeloggt']) && $_SESSION['eingeloggt'])
         <th> Name </th>
         <th> Zeit </th>
     </tr>
-	  <?PHP
+	  <?PHP        //Schnellste Zeit für den Schwierigkeitsgrad mittel
 			
 			$statement = $pdo->prepare("SELECT nutzer.EchterName, spiele.zeitMittel FROM nutzer, spiele WHERE nutzer.SpielerID=spiele.SpielerID AND spiele.zeitMittel<999999 ORDER BY spiele.zeitLeicht asc");
 			$result = $statement->execute();
@@ -131,7 +134,7 @@ if(isset($_SESSION['eingeloggt']) && $_SESSION['eingeloggt'])
         <th> Name </th>
         <th> Zeit </th>
     </tr>
-	  <?PHP
+	  <?PHP		//Schnellste Zeit für den Schwierigkeitsgrad schwer
 			
 			$statement = $pdo->prepare("SELECT nutzer.EchterName, spiele.zeitSchwer FROM nutzer, spiele WHERE nutzer.SpielerID=spiele.SpielerID AND spiele.zeitSchwer<999999 ORDER BY spiele.zeitLeicht asc");
 			$result = $statement->execute();
@@ -156,9 +159,9 @@ if(isset($_SESSION['eingeloggt']) && $_SESSION['eingeloggt'])
         <th> Name </th>
         <th> Zeit </th>
     </tr>
-	  <?PHP
+	  <?PHP		//Schnellste Zeit für den Schwierigkeitsgrad extrem
 			
-			$statement = $pdo->prepare("SELECT nutzer.EchterName, spiele.zeitExtrem FROM nutzer, spiele WHERE nutzer.SpielerID=spiele.SpielerID AND spiele.zeitExtrem<999999 ORDER BY spiele.zeitLeicht asc");
+			$statement = $pdo->prepare("SELECT nutzer.EchterName, spiele.zeitExtrem FROM nutzer, spiele WHERE nutzer.SpielerID=spiele.SpielerID AND spiele.zeitExtrem<999999 ORDER BY spiele.zeitExtrem asc");
 			$result = $statement->execute();
 			$liste = $statement->fetchAll();
 			

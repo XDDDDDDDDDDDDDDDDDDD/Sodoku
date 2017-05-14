@@ -5,7 +5,7 @@
 
 	
 
-<?PHP
+<?PHP                     //Wird vom Button des Modals aufgerufen, Ändert die E-Mail Adresse des Nutzers
 session_start();
 
   require_once('dbconfig.php');
@@ -15,10 +15,10 @@ session_start();
   {
 	   if(isset($_POST['neueMail']))
 		{
-			$email=htmlspecialchars($_POST['neueMail']);
+			$email=htmlspecialchars($_POST['neueMail']);   //Zur sicherheit
 			
 			
-			if(!filter_var($email, FILTER_VALIDATE_EMAIL)) 
+			if(!filter_var($email, FILTER_VALIDATE_EMAIL))  //Ungültige E-Mail Adresse
 			{
 				echo 'Bitte eine gültige E-Mail-Adresse eingeben<br>';
 			}
@@ -26,7 +26,7 @@ session_start();
 			{
 	  
 	
-	
+				//E-Mail wird in die Datenbank geschrieben
 				$statement = $pdo->prepare("UPDATE nutzer SET Mail = :mail, verifiziert = false WHERE Nutzername = :nname");
 				$statement->bindParam(':nname', $_SESSION['nutzername']);
 				$statement->bindParam(':mail', $email);
@@ -34,7 +34,7 @@ session_start();
 				$statement->execute();
 				
 				$_SESSION['email']=$email;
-				$_SESSION['verifiziert']=false;
+				$_SESSION['verifiziert']=false;   //Neu verifizieren erforderlich
 				
 				
 	

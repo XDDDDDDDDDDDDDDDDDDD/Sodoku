@@ -1,3 +1,4 @@
+<!--  Zum ausgeben der Bestenliste (gewonnene Spiele)       -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,7 +44,7 @@
   </style>
 <body>
 
-<?PHP
+<?PHP  //überprüft, welcher Header gewählt werden soll (je nachdem ob man eingeloggt ist oder nicht)
 
 	session_start();
 
@@ -69,11 +70,12 @@ if(isset($_SESSION['eingeloggt']) && $_SESSION['eingeloggt'])
 	
   ?>
 
+  <!--  Überschrift  -->
   <h1 style="color:white; text-align: center"> Bestenliste Gelößte Spiele </h1>
 
 
 
-  
+  <!-- generiert die Bestenliste durch Datenbankabfrage und erstellt dann generisch die Tabelle -->
   <div class="scroll" style="float:left; margin-left:2%; margin-top:60px">
     <h2> Gesamt</h2>
     <table style="width:auto; text-align:center">
@@ -82,24 +84,24 @@ if(isset($_SESSION['eingeloggt']) && $_SESSION['eingeloggt'])
         <th> Anzahl </th>
     </tr>
 	  <?PHP
-			
-			$statement = $pdo->prepare("SELECT nutzer.EchterName, spiele.gewSpieleLeicht FROM nutzer, spiele WHERE nutzer.SpielerID=spiele.SpielerID AND spiele.gewSpieleLeicht<999999 ORDER BY spiele.gewSpieleLeicht desc");
+			 //Anzahl aller gewonnenen Spiele
+			$statement = $pdo->prepare("SELECT nutzer.EchterName, spiele.gewSpiele FROM nutzer, spiele WHERE nutzer.SpielerID=spiele.SpielerID AND spiele.gewSpiele ORDER BY spiele.gewSpiele desc");
 			$result = $statement->execute();
 			$liste = $statement->fetchAll();
 			
 			
-			foreach($liste as $row)
+			foreach($liste as $row) //Ausgabe in HTML
 			{
 				echo "<tr>";
 				echo '<td><a style="color:white" href="visitprofile.php?u=' . $row["EchterName"] . '">'. $row["EchterName"] . '</a></td>';
-				echo '<td>'. $row["gewSpieleLeicht"] . '</td>';
+				echo '<td>'. $row["gewSpiele"] . '</td>';
 				echo "</tr>";
 			}
 	  ?>
     </table>
   </div>
   
-  
+  <!-- wie oben -->
   <div class="scroll" style="float:left; margin-left:7%; margin-top:60px">
     <h2> Leicht </h2>
     <table style="width:auto; text-align:left">
@@ -108,13 +110,13 @@ if(isset($_SESSION['eingeloggt']) && $_SESSION['eingeloggt'])
         <th> Anzahl </th>
     </tr>
 	  <?PHP
-			
-			$statement = $pdo->prepare("SELECT nutzer.EchterName, spiele.gewSpieleLeicht FROM nutzer, spiele WHERE nutzer.SpielerID=spiele.SpielerID AND spiele.gewSpieleLeicht<999999 ORDER BY spiele.gewSpieleLeicht desc");
+			//Anzahl gewonnener Spiele mit dem Schwierigkeitsgrad leicht
+			$statement = $pdo->prepare("SELECT nutzer.EchterName, spiele.gewSpieleLeicht FROM nutzer, spiele WHERE nutzer.SpielerID=spiele.SpielerID ORDER BY spiele.gewSpieleLeicht desc");
 			$result = $statement->execute();
 			$liste = $statement->fetchAll();
 			
 			
-			foreach($liste as $row)
+			foreach($liste as $row)  //Ausgabe in HTML
 			{
 				echo "<tr>";
 				echo '<td><a style="color:white" href="visitprofile.php?u=' . $row["EchterName"] . '">'. $row["EchterName"] . '</a></td>';
@@ -132,14 +134,14 @@ if(isset($_SESSION['eingeloggt']) && $_SESSION['eingeloggt'])
         <th> Name </th>
         <th> Anzahl </th>
     </tr>
-	  <?PHP
+	  <?PHP    //Anzahl gewonnener Spiele mit dem Schwierigkeitsgrad mittel
 			
-			$statement = $pdo->prepare("SELECT nutzer.EchterName, spiele.gewSpieleMittel FROM nutzer, spiele WHERE nutzer.SpielerID=spiele.SpielerID AND spiele.gewSpieleMittel<999999 ORDER BY spiele.gewSpieleLeicht desc");
+			$statement = $pdo->prepare("SELECT nutzer.EchterName, spiele.gewSpieleMittel FROM nutzer, spiele WHERE nutzer.SpielerID=spiele.SpielerID ORDER BY spiele.gewSpieleMittel desc");
 			$result = $statement->execute();
 			$liste = $statement->fetchAll();
 			
 			
-			foreach($liste as $row)
+			foreach($liste as $row)  //Ausgabe in HTML
 			{
 				echo "<tr>";
 				echo '<td><a style="color:white" href="visitprofile.php?u=' . $row["EchterName"] . '">'. $row["EchterName"] . '</a></td>';
@@ -157,9 +159,9 @@ if(isset($_SESSION['eingeloggt']) && $_SESSION['eingeloggt'])
         <th> Name </th>
         <th> Anzahl </th>
     </tr>
-	  <?PHP
+	  <?PHP   //Anzahl gewonnener Spiele mit dem Schwierigkeitsgrad schwer
 			
-			$statement = $pdo->prepare("SELECT nutzer.EchterName, spiele.gewSpieleSchwer FROM nutzer, spiele WHERE nutzer.SpielerID=spiele.SpielerID AND spiele.gewSpieleSchwer<999999 ORDER BY spiele.gewSpieleLeicht desc");
+			$statement = $pdo->prepare("SELECT nutzer.EchterName, spiele.gewSpieleSchwer FROM nutzer, spiele WHERE nutzer.SpielerID=spiele.SpielerID ORDER BY spiele.gewSpieleSchwer desc");
 			$result = $statement->execute();
 			$liste = $statement->fetchAll();
 			
@@ -183,8 +185,8 @@ if(isset($_SESSION['eingeloggt']) && $_SESSION['eingeloggt'])
         <th> Anzahl </th>
     </tr>
 	  <?PHP
-			
-			$statement = $pdo->prepare("SELECT nutzer.EchterName, spiele.gewSpieleExtrem FROM nutzer, spiele WHERE nutzer.SpielerID=spiele.SpielerID AND spiele.gewSpieleExtrem<999999 ORDER BY spiele.gewSpieleLeicht desc");
+			//Anzahl gewonnener Spiele mit dem Schwierigkeitsgrad extrem
+			$statement = $pdo->prepare("SELECT nutzer.EchterName, spiele.gewSpieleExtrem FROM nutzer, spiele WHERE nutzer.SpielerID=spiele.SpielerID ORDER BY spiele.gewSpieleExtrem desc");
 			$result = $statement->execute();
 			$liste = $statement->fetchAll();
 			

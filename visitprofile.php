@@ -39,9 +39,9 @@
   </style>
 <body>
 
-<?PHP
+<?PHP   //header
 
-	session_start();
+	session_start();  
 
  require_once('include/dbconfig.php');
 
@@ -63,11 +63,11 @@ if(isset($_SESSION['eingeloggt']) && $_SESSION['eingeloggt'])
 
 	include("navigationbar.html");
 	
-	if(isset($_GET['u']))
+	if(isset($_GET['u']))   //Bekommt den Anzeigenamen übergeben
 	{
 		$name=$_GET['u'];
 		
-		$statement = $pdo->prepare("SELECT * FROM nutzer, spiele WHERE nutzer.SpielerID=spiele.SpielerID AND EchterName=:name");
+		$statement = $pdo->prepare("SELECT * FROM nutzer, spiele WHERE nutzer.SpielerID=spiele.SpielerID AND EchterName=:name");     //Sucht den passenden Eintrag in der Datenbank
 		$statement->bindParam(':name', $name);
 		$statement->execute();
 		$user = $statement->fetch();
@@ -77,7 +77,7 @@ if(isset($_SESSION['eingeloggt']) && $_SESSION['eingeloggt'])
   ?>
 
   <h3 style="color:white; font-size: 150%"> <ins> Profil </ins> </h3>
-<!-- Zeigt die Persönlichen Daten des Spielers an -->
+<!-- Zeigt die Persönlichen Daten des Spielers (abzuglich der Daten, durch die die Sicherheit des Accounts gefährdet werde könnte)an -->
   <article style="float:left; margin-left: 10px">
     <h3 style="color:green; font-size:120%"> <ins> Persönliche Daten </ins>
     </h3>
@@ -86,10 +86,6 @@ if(isset($_SESSION['eingeloggt']) && $_SESSION['eingeloggt'])
         <tr>
           <th> Name </th>
           <td> <?php echo htmlspecialchars($name); ?> </td>
-        </tr>
-        <tr>
-          <th> Username </th>
-          <td> <?php echo htmlspecialchars($user['Nutzername']); ?> </td>
         </tr>
         <tr>
           <th> Geschlecht </th>

@@ -44,6 +44,7 @@
 
 <body>
 
+	<!-- JQuery und Bootstrap für das Modal -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<link href="css/bootstrap.min.css" rel="stylesheet">
@@ -52,7 +53,7 @@
 
   <?PHP
 
-
+		//header
 		include_once('header/headerLogout.html');
 
 		if($_SESSION['verifiziert']==false)
@@ -76,25 +77,25 @@
       <table style="width:auto; text-align: left; font-size: 110%">
         <tr>
           <th> Name </th>
-          <td> <?php echo htmlspecialchars($_SESSION['name']); ?> </td>
+          <td> <?php echo htmlspecialchars($_SESSION['name']); ?> </td>   <!-- Setzt den Anzeigeamen des eingeloggten Nutzers -->
         </tr>
         <tr>
           <th> Username </th>
-          <td> <?php echo htmlspecialchars($_SESSION['nutzername']); ?> </td>
+          <td> <?php echo htmlspecialchars($_SESSION['nutzername']); ?> </td>     <!-- Setzt den Nutzernamen des eingeloggten Nutzers -->
         </tr>
         <tr>
-          <th> Geschlecht </th>
-          <td> <?php echo $_SESSION['geschlecht']; ?> </td>
+          <th> Geschlecht </th> 
+          <td> <?php echo $_SESSION['geschlecht']; ?> </td>      <!-- Setzt das Geschlecht des eingeloggten Nutzers -->
         </tr>
         <tr>
           <th> Mail Adresse </th>
-          <td> <?php echo htmlspecialchars($_SESSION['email']); ?> </td>
-          <td>  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#emailModal">E-Mail ändern</button> </td>
+          <td> <?php echo htmlspecialchars($_SESSION['email']); ?> </td>    <!-- Setzt die Email des eingeloggten Nutzers -->
+          <td>  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#emailModal">E-Mail ändern</button> </td>   <!-- Button zum Aufrufen des Modals zum Ändern der E-Mail Adresse -->
         </tr>
         <tr>
           <th> Status </th>
-          <td> <textarea rows="5" cols="30" disabled="active" style="background-color: rgba(18, 18, 18, 0)"> <?php echo htmlspecialchars($_SESSION['status']); ?> </textarea> </td>
-          <td> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#statusModal">Status ändern</button>  </td>
+          <td> <textarea rows="5" cols="30" disabled="active" style="background-color: rgba(18, 18, 18, 0)"> <?php echo htmlspecialchars($_SESSION['status']); ?> </textarea> </td>  <!-- Status (Standardmäßig nicht gesetzt) -->
+          <td> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#statusModal">Status ändern</button>  </td> <!-- Button zum Aufrufen des Modals zum Ändern des Status -->
         </tr>
       </table>
     </section>

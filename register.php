@@ -4,7 +4,7 @@
 </head>
 <body>
 
-<?php
+<?php    //Wird von der Registrieren.php aufgerufen
 session_start();
 
 require_once('include/dbconfig.php');
@@ -15,14 +15,14 @@ if(isset($_POST['register']))
 
  $error = false;
  
- $nname= trim($_POST['uname']);
+ $nname= trim($_POST['uname']);      //Übernimmt die eingegebenen Daten
  $name= trim($_POST['name']);
  $email = trim($_POST['mail']);
  $password = $_POST['password'];
  $password2 = $_POST['password_confirm'];
  $gender;
  
- if(isset($_POST['genderm']))
+ if(isset($_POST['genderm']))  //Festlegen des Geschlechts (da Enum in der DB)
  {
 	 $gender=2;
  }
@@ -36,7 +36,7 @@ if(isset($_POST['register']))
  }
  
   
-	if(!filter_var($email, FILTER_VALIDATE_EMAIL)) 
+	if(!filter_var($email, FILTER_VALIDATE_EMAIL))   //Fültige E-Mail Adresse
 	{
 		echo 'Bitte eine gültige E-Mail-Adresse eingeben<br>';
 		$error = true;
@@ -78,7 +78,7 @@ if(isset($_POST['register']))
 	}
 	
 	
-	if(strlen($nname) < 3)
+	if(strlen($nname) < 3)  //Nutzername zu kurz
 	{
 		echo 'Bitte geben sie einen Nutzernamen an<br>';
 		$error=true;
@@ -100,14 +100,14 @@ if(isset($_POST['register']))
 		}
 	}
 	
-	
+	//Passwörter kürzer als 6 Zeichen sind zu einfach zu Brute-Forcen
 	if(strlen($password) <= 6) 
 	{
 		echo 'Bitte ein Passwort mit einer Mindestlänge von 6 Zeichen angeben<br>';
 		$error = true;
 	}
  
-	if($password != $password2) 
+	if($password != $password2)   //Passwort & Passwort-Confirm sind identisch
 	{
 		echo 'Die Passwörter müssen übereinstimmen<br>';
 		$error = true;
@@ -122,13 +122,9 @@ if(isset($_POST['register']))
 	{ 
 		$password_hash = password_hash($password, PASSWORD_DEFAULT);
 		
-		$statement = $pdo->prepare("SELECT * FROM nutzer");
-		$result = $statement->execute();
-		$user = $statement->fetch();
 		
 		
-		
-		try
+		try  //in die Datenbanktabelle nutzer schreiben, der Trigger erstellt automatisch einen dazugehörigen Eintrag in spiele
 		{
  
 		$statement = $pdo->prepare("INSERT INTO nutzer (Nutzername, NutzerPW, EchterName, Mail, Geschlecht) VALUES (:nname, :password, :name, :email, :gender);");
@@ -142,7 +138,7 @@ if(isset($_POST['register']))
 		$statement->execute();
 		
 		
-		
+		//zweite Query um die Daten zum befüllen der Session-Variablen zu erhalten
 		$statement2 = $pdo->prepare("SELECT * FROM nutzer, spiele WHERE Nutzername = :nname AND nutzer.SpielerID = spiele.SpielerID");
 		$result = $statement2->execute(array('nname' => $nname));
 		$user = $statement2->fetch();
@@ -150,7 +146,8 @@ if(isset($_POST['register']))
 		
 		if ($user !== false) 
 		{
-		
+			
+			//Sessio-Variablen füllen
 			$_SESSION['eingeloggt']=true;
 			$_SESSION['userid'] = $user['NutzerID'];
 			$_SESSION['spielerid'] = $user['SpielerID'];
@@ -162,7 +159,7 @@ if(isset($_POST['register']))
 			$_SESSION['datum']=$user['RegistriertSeit'];
 			
 			$_SESSION['verifiziert']=$user['verifiziert'];
-			$_SESSION['verify'] = rand(10000,99999);
+			$_SESSION['verify'] = rand(10000,99999);  //Verfikationscode
 			$_SESSION['gewSpiele']=$user['gewSpiele'];
 			$_SESSION['gewSpieleLeicht']=$user['gewSpieleLeicht'];
 			$_SESSION['gewSpieleMittel']=$user['gewSpieleMittel'];
@@ -182,17 +179,20 @@ if(isset($_POST['register']))
 		}
 		catch(PDOException $e)
 		{
-			echo $e->getMessage();
+			echo "Beim schreiben in die Datenbank trat ein Fehler auf";
 		}
 		
-		
+		header('Location: Start.php');  //Registriert und eingeloggt
 	} 
+	else
+	{
+		header('Location: Registrieren.php');
+	}
 	
 }
 
 ?>
 
- <meta http-equiv="refresh" content="0;URL=Start.php" />
   
 </body>
 </html>

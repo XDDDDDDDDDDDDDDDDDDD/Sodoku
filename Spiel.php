@@ -116,20 +116,21 @@
 
 	session_start();
 
+	//Variablen die den Schwierigkeitsgrad definieren
 	const EASY = 50;
 	const MEDIUM = 37;
 	const HARD = 25;
 	const EXTREME = 17;
 
 
-
+	//Abgabebutton wurde gedrückt
 	if(isset($_POST['fertig']))
 	{
 		$feld=$_SESSION['sudoku'];
 		$feldArray=str_split($feld);
 		$userSet='';
 
-		for($i=0;$i<=80;$i++)
+		for($i=0;$i<=80;$i++)     //Ließt Usereingabe aus
 		{
 			if(!empty($_POST[$i]))
 			{
@@ -145,12 +146,12 @@
 
 		if($userSet==$_SESSION['lösung'])   //SIEG
 		{
-			$post=microtime(true);
+			$post=microtime(true);     //Zeit hält an
 			$time=$post-$_SESSION['pre'];
 			unset($_SESSION['pre']);
 			$_SESSION['time']=intval($time);
 
-			header('Location: sieg.php');
+			header('Location: sieg.php');  //Zum Siegerbildschirm
 
 		}
 		else   //Da war was falsch
@@ -161,25 +162,25 @@
 
 
 	}
-	elseif(isset($_POST['neu']))
+	elseif(isset($_POST['neu']))      //Neu generieren
 	{
-		$help=$_SESSION['diff'];
+		$help=$_SESSION['diff'];    //Variablen löschen
 		unset($_SESSION['sudoku']);
 		unset($_SESSION['diff']);
 		unset($_SESSION['lösung']);
 		unset($_SESSION['pre']);
-		header('Location: Spiel.php?d='.$help);
+		header('Location: Spiel.php?d='.$help);    //Neu laden
 
 	}
-	else
+	else    //Spielfeld laden
 	{
 
-		include('spielfeld.php');
+		include('spielfeld.php');  //Generiert Sudoku
 
 
 		if(isset($_GET['d']))
 		{
-			$string="000000000";
+			$string="000000000";                     //Leeres Array
 			$array[0]=$reihe1=str_split($string);
 			$array[1]=$reihe2=str_split($string);
 			$array[2]=$reihe3=str_split($string);
@@ -192,7 +193,7 @@
 
 			for($i=1;$i<9;$i++)
 			{
-				$x=rand(0,8);
+				$x=rand(0,8);         //Packt die Zahlen von 1-9 einmal in das Array an beliebiger stelle
 				$y=rand(0,8);
 				if($array[$y][$x]==0)
 				{
@@ -209,23 +210,23 @@
 			{
 				for($r=0;$r<8;$r++)
 				{
-					$puzzle .= $array[$c][$r];
+					$puzzle .= $array[$c][$r];     //generiert aus dem Array wieder einen String
 				}
 			}
 
 
 			$sudoku = new Sudoku();
-			$lösung= $sudoku->solve($puzzle);
-			$_SESSION['lösung']=$lösung;
+			$lösung= $sudoku->solve($puzzle);     //Lößt das Sudoku
+			$_SESSION['lösung']=$lösung;          //Lösung ist definiert
 
 			$verarbeiten=str_split($lösung);
 
 
 			$diff=$_GET['d'];
-			$_SESSION['diff']=$diff;
+			$_SESSION['diff']=$diff;     //Generieren des Sudokus für den Spieler aus dem gelösten Sudoku
 			if($diff==1)
 			{
-				for($z=80;$z>EASY;$z--)
+				for($z=80;$z>EASY;$z--)    //Einfach
 				{
 					do{
 						$weg=rand(0,80);
@@ -238,7 +239,7 @@
 			}
 			elseif($diff==2)
 			{
-				for($z=80;$z>MEDIUM;$z--)
+				for($z=80;$z>MEDIUM;$z--)    //Mittel
 				{
 					do{
 						$weg=rand(0,80);
@@ -251,7 +252,7 @@
 			}
 			elseif($diff==3)
 			{
-				for($z=80;$z>HARD;$z--)
+				for($z=80;$z>HARD;$z--)    //Schwer
 				{
 					do{
 						$weg=rand(0,80);
@@ -264,7 +265,7 @@
 			}
 			elseif($diff==4)
 			{
-				for($z=80;$z>EXTREME;$z--)
+				for($z=80;$z>EXTREME;$z--)   //Extrem
 				{
 					do{
 						$weg=rand(0,80);
@@ -277,7 +278,7 @@
 			}
 			else
 			{
-				for($z=80;$z>EASY;$z--)
+				for($z=80;$z>EASY;$z--)   //User will schummeln und gibt einen beliebigen Wert ein, bekommt ein einfaches Sudoku
 				{
 					do{
 						$weg=rand(0,80);
@@ -290,17 +291,15 @@
 			}
 		}
 		else
-		{
-
-		}
+		{}
 
 		$feld = implode($verarbeiten);
 
-		$_SESSION['sudoku']=$feld;
+		$_SESSION['sudoku']=$feld;        //Fertig erstelltes, zu lösenden Sudoku
 
 	}
 
-	if(isset($_SESSION['eingeloggt']) && $_SESSION['eingeloggt'])
+	if(isset($_SESSION['eingeloggt']) && $_SESSION['eingeloggt'])     //Header
 	{
 		include('header/headerLogout.html');
 
@@ -318,10 +317,13 @@
 
 	include("navigationbar.html");
 
-	$_SESSION['pre']=microtime(true);
+	$_SESSION['pre']=microtime(true);   //Zeit beginnt zu zählen
 
   ?>
 
+  
+  
+  <!-- Sudokufeld wird erstellt (von oben nach unten & links nach rechts)  -->
 <div id="binny" style="margin-left:35%; margin-top:5%">
 <form name="form" action="Spiel.php" method="POST">
 <table class="rand">
@@ -332,7 +334,7 @@
 <td class="linie">
 <table class="box-table">
 <tbody><tr>
-<td><input id="0" name='0' class="cell" size="1" type="text" pattern="[1-9]" maxlength="1" <?PHP if($feld[0]!=0){echo 'value="'.$feld[0].'" style="color:green" readonly';} ?>></td>
+<td><input id="0" name='0' class="cell" size="1" type="text" pattern="[1-9]" maxlength="1" <?PHP if($feld[0]!=0){echo 'value="'.$feld[0].'" style="color:green" readonly';} ?>></td>   <!--Vorgegebene Werte sind nicht editierbar -->
 <td><input id="1" name='1' class="cell" size="1" type="text" pattern="[1-9]" maxlength="1" <?PHP if($feld[1]!=0){echo 'value="'.$feld[1].'" style="color:green" readonly';} ?>></td>
 <td><input id="2" name='2' class="cell" size="1" type="text" pattern="[1-9]" maxlength="1" <?PHP if($feld[2]!=0){echo 'value="'.$feld[2].'" style="color:green" readonly';} ?>></td>
 </tr>
@@ -532,7 +534,7 @@ if($setField)
 
 	}
 
-	echo '<td><font color="red">Das war nicht korrekt...versucht nochmal :)</font></td>';
+	echo '<td><div align="center"><font color="red">Das war nicht korrekt...versucht nochmal :)</font></div></td>';
 
 }
 
