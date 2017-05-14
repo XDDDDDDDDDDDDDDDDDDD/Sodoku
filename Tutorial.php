@@ -36,8 +36,8 @@
     }
 
 	.disabled {
-    pointer-events:none; //This makes it not clickable
-    opacity:0.6;         //This grays it out to look disabled
+    pointer-events:none; 
+    opacity:0.6;         
 	}
 
   </style>
@@ -68,7 +68,7 @@
 
 <!-- Include der Navigationbar und des dazu gehörigen Styles -->
   <?php
-    include("include/navigationbar.html");
+    include("navigationbar.html");
   ?>
 
 <!-- Ausgabe der Spielregeln von Sudoku -->

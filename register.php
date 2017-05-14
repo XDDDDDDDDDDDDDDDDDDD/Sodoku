@@ -7,8 +7,8 @@
 <?php
 session_start();
 
-require_once('dbconfig.php');
-require_once('passwords.php');
+require_once('include/dbconfig.php');
+require_once('include/passwords.php');
 
 if(isset($_POST['register'])) 
 {

@@ -99,44 +99,20 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	
 	
-
-
-
-  <header>
-    <form action="logout.php" method="POST" style=" float: right; margin-top:5px; margin-right:20px">
-      <button type="submit" name=logout id=logout> Logout </button>
-    </form>
-    <div style="width: 1900px; border-bottom: 2px solid white;">
-      <h1> Sudoku Online </h1>
-      <p  style="text-align: right; margin-top:-55px; margin-right:75px; font-size:120%"> Hallo <?php echo $_SESSION['name']; ?> !</p>
-    </div>
-  </header>
   
   <?PHP
   
+  
+		include_once('header/headerLogout.html');
   
 		if($_SESSION['verifiziert']==false)
 		{
 			include('header/headerVeri.html');
 		}
-  
+		
+		include('navigationbar.html');
   
   ?>
-
-  <ul>
-    <li><a href="Start.php" class="active" href="#Start">Start</a></li>
-    <li><a href="Profil.php"class="active" href="#Profil">Profil</a></li>
-    <li class="dropdown">
-      <a href="Bestenliste"class="active" >Bestenliste</a>
-      <div class="dropdown-content">
-        <a href="besttime.php"> Bestenliste Zeiten </a>
-        <a href="bestgames.php"> Bestenliste Spiele </a>
-        <a href="bestrank.php"> Bestenliste ELO </a>
-      </div>	
-    </li>
-    <li><a href="Tutorial.php" class="active" href="#Regeln">Regeln</a></li>
-    <li><a href="Impressum.php" class="active" href="#Impressum">Impressum</a></li>
-  </ul>
 
   
   
@@ -167,7 +143,7 @@
         </tr>
         <tr>
           <th> Status </th>
-          <td> <textarea rows="5" cols="30" disabled="active"> <?php echo htmlspecialchars($_SESSION['status']); ?> </textarea> </td>
+          <td> <textarea rows="5" cols="30" disabled="active" style="background-color: rgba(18, 18, 18, 0)"> <?php echo htmlspecialchars($_SESSION['status']); ?> </textarea> </td>
           <td> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#statusModal">Status ändern</button>  </td>
         </tr>
       </table>

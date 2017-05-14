@@ -111,19 +111,15 @@
   </style>
 <body>
  
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
-<script src="timer.jquery.js"></script> 
-
-<!-- Include der Navigationbar und des dazu gehörigen Styles -->
   
   <?PHP
 
 	session_start();
 	
-	const EASY = 48;
-	const MEDIUM = 38;
-	const HARD = 26;
-	const EXTREME = 15;
+	const EASY = 50;
+	const MEDIUM = 37;
+	const HARD = 25;
+	const EXTREME = 17;
 
 	
 	
@@ -178,7 +174,7 @@
 	else
 	{
 		
-		include_once('Sudoku.php');
+		include('spielfeld.php');
 		
 		
 		if(isset($_GET['d']))
@@ -320,7 +316,7 @@
 	}
 
 
-	include("include/navigationbar.html");
+	include("navigationbar.html");
 	
 	$_SESSION['pre']=microtime(true);
 

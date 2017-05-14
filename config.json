@@ -1,0 +1,14 @@
+{
+  "vars": {},
+  "css": [
+    "buttons.less",
+    "close.less",
+    "component-animations.less",
+    "modals.less"
+  ],
+  "js": [
+    "modal.js",
+    "transition.js"
+  ],
+  "customizerUrl": "http://getbootstrap.com/customize/?id=21fe78ad738e850fa2d7a77d1a9de58f"
+}

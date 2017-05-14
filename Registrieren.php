@@ -64,32 +64,11 @@
 <?php
 session_start();
 
+include('header/headerLogin.php');
+include("navigationbar.html");
+
 ?>
 
-<!-- Im Header werden neben der Anzeige des Namens der Seite, die Möglichkeit geboten sich einzuloggen (mit Benutzername und Passwort) 
-     des Weiteren ist es möglich auf die Registrierungsseite weitergeleitet zu werden oder sein Passwort zurückzusetzen, wenn man es
-     vergessen hat. -->
- <header>
-    <form action="login.php" method="POST" style="float:right; margin-top:15px;">
-      <label for="uname">Username</label>
-      <input type="text" id="uname" name=uname >
-      <label for="pw">Password</label>
-      <input type="password" id="password" name=password>
-      <button type="submit"> Login </button>
-      <article style="display: block">
-        <a href="Registrieren.php" style="color: white " > Registrieren? </a>
-        <a href="pwvergessen" style="color: white; margin-left:200px" > Passwort vergessen? </a>
-      </article>
-    </form>
-    <div style="width: 1910px; border-bottom: 2px solid white;">
-      <h1> Sudoku Online </h1>
-    </div>
-  </header>
-
-<!-- Include der Navigationbar und des dazu gehörigen Styles -->
-  <?php
-    include("include/navigationbar.html");
-  ?>
 
   <h3 style="color:white; font-size: 150%"> <ins> Registrieren </ins> </h3>
 	

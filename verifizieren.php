@@ -62,15 +62,13 @@
 session_start();
 
 include('header/headerLogout.html');
-require_once('dbconfig.php');
+require_once('include/dbconfig.php');
+include("navigationbar.html");
+
+
 ?>
 
 
-
-<!-- Include der Navigationbar und des dazu gehörigen Styles -->
-  <?php
-    include("include/navigationbar.html");
-  ?>
 
 <h2 style="color: white; margin-left:12%"> Code: <?php echo $_SESSION['verify']; ?> </h2>
 

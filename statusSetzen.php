@@ -8,7 +8,7 @@
 <?PHP
 session_start();
 
-  require_once('dbconfig.php');
+  require_once('include/dbconfig.php');
   
   
   if(isset($_POST['aendern']))

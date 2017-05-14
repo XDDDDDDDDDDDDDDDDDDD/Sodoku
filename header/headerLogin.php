@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Diese Datei erzeugt den Login für den Header. -->
+<!-- Diese Datei dient dazu, um sich über die Felder im Header einloggen zu können -->
 <html>
 <head>
   <style>
@@ -54,7 +54,6 @@
       <button type="submit" name=login id=login> Login </button>
       <article style="display: block;">
         <a href="Registrieren.php" style="color: white " > Registrieren? </a>
-        <a href="pwvergessen" style="color: white; margin-left:200px" > Passwort vergessen? </a>
       </article>
     </form>
     <div style="width: 1910px; border-bottom: 2px solid white;">

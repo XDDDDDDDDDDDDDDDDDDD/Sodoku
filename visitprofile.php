@@ -42,22 +42,38 @@
 <?PHP
 
 	session_start();
-?>
 
-<!-- In dem Header wird der Name der Seite angezeigt und die Möglichkeit geboten sich auszuloggen. --> 
-  <header>
-    <form action="logout.php" method="POST" style=" float: right; margin-top:5px; margin-right:20px">
-      <button type="submit" name=logout id=logout> Logout </button>
-    </form>
-    <div style="width: 1900px; border-bottom: 2px solid white;">
-      <h1> Sudoku Online </h1>
-      <p  style="text-align: right; margin-top:-55px; margin-right:75px; font-size:120%"> Hallo <?php echo $_SESSION['name']; ?> !</p>
-    </div>
-  </header>
+ require_once('include/dbconfig.php');
 
-<!-- Include der Navigationbar und des dazu gehörigen Styles -->
-  <?php
-    include("include/navigationbar.html");
+if(isset($_SESSION['eingeloggt']) && $_SESSION['eingeloggt'])
+	{
+		include('header/headerLogout.html');
+
+		if($_SESSION['verifiziert']==false)
+		{
+			include('header/headerVeri.html');
+		}
+
+	}
+	else
+	{
+		include('header/headerLogin.php');
+	}
+
+
+	include("navigationbar.html");
+	
+	if(isset($_GET['u']))
+	{
+		$name=$_GET['u'];
+		
+		$statement = $pdo->prepare("SELECT * FROM nutzer, spiele WHERE nutzer.SpielerID=spiele.SpielerID AND EchterName=:name");
+		$statement->bindParam(':name', $name);
+		$statement->execute();
+		$user = $statement->fetch();
+
+	}
+	
   ?>
 
   <h3 style="color:white; font-size: 150%"> <ins> Profil </ins> </h3>
@@ -69,19 +85,19 @@
       <table style="width:100%; text-align: left; font-size: 110%">
         <tr>
           <th> Name </th>
-          <td> <?php echo htmlspecialchars($_SESSION['name']); ?> </td>
+          <td> <?php echo htmlspecialchars($name); ?> </td>
         </tr>
         <tr>
           <th> Username </th>
-          <td> <?php echo htmlspecialchars($_SESSION['nutzername']); ?> </td>
+          <td> <?php echo htmlspecialchars($user['Nutzername']); ?> </td>
         </tr>
         <tr>
           <th> Geschlecht </th>
-          <td> <?php echo $_SESSION['geschlecht']; ?> </td>
+          <td> <?php echo utf8_encode($user['Geschlecht']); ?> </td>
         </tr>
         <tr>
           <th> Status </th>
-          <td> <?php echo htmlspecialchars($_SESSION['status']); ?> </td>
+          <td> <?php echo htmlspecialchars($user['Status']); ?> </td>
         </tr>
 
       </table>
@@ -95,15 +111,15 @@
     </h3>
 <!-- Zeigt Elo und Rang des Spielers an -->
     <section style="color: white; font-size:110% ">
-      <p> Aktiv seit <?php echo $_SESSION['datum']; ?>. </p>
+      <p> Aktiv seit <?php echo $user['RegistriertSeit']; ?>. </p>
       <table style="width:100%; text-align:left">
         <tr>
           <th> ELO: </th>
-          <td> <?php echo $_SESSION['Elo']; ?> </td>
+          <td> <?php echo $user['Elo']; ?> </td>
         </tr>
         <tr>
           <th> Rang: </th>
-          <td> 30 </td>
+          <td>  </td>
         </tr>
       </table>
 <!-- Zeigt die Anzahl der gewonnenen Spiele in den einzelnen Schwierigkeitsgraden an. -->
@@ -113,19 +129,19 @@
           <table style="width:100%; text-align:left">
             <tr>
               <th> leicht </th>
-              <td> <?php echo $_SESSION['gewSpieleLeicht']; ?> </td>
+              <td> <?php echo $user['gewSpieleLeicht']; ?> </td>
             </tr>
             <tr>
               <th> mittel </th>
-              <td> <?php echo $_SESSION['gewSpieleMittel']; ?> </td>
+              <td> <?php echo $user['gewSpieleMittel']; ?> </td>
             </tr>
             <tr>
               <th> schwer </th>
-              <td> <?php echo $_SESSION['gewSpieleSchwer']; ?> </td>
+              <td> <?php echo $user['gewSpieleSchwer']; ?> </td>
             </tr>
             <tr>
               <th> extrem </th>
-              <td> <?php echo $_SESSION['gewSpieleExtrem']; ?> </td>
+              <td> <?php echo $user['gewSpieleExtrem']; ?> </td>
             </tr>
           </table>
         </dd>
@@ -138,19 +154,19 @@
           <table style="width:100%; text-align:left">
             <tr>
               <th> leicht </th>
-              <td> <?php echo $_SESSION['durchZeitLeicht']; ?> </td>
+              <td> <?php echo $user['zeitLeicht']; ?> </td>
             </tr>
             <tr>
               <th> mittel </th>
-              <td> <?php echo $_SESSION['durchZeitMittel']; ?> </td>
+              <td> <?php echo $user['zeitMittel']; ?> </td>
             </tr>
             <tr>
               <th> schwer </th>
-              <td> <?php echo $_SESSION['durchZeitSchwer']; ?> </td>
+              <td> <?php echo $user['zeitSchwer']; ?> </td>
             </tr>
             <tr>
               <th> extrem </th>
-              <td> <?php echo $_SESSION['durchZeitExtrem']; ?> </td>
+              <td> <?php echo $user['zeitExtrem']; ?> </td>
             </tr>
           </table>
         </dd>

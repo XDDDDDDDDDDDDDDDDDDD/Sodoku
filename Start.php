@@ -50,8 +50,8 @@
 
 
 	.disabled {
-    pointer-events:none; //This makes it not clickable
-    opacity:0.6;         //This grays it out to look disabled
+    pointer-events:none; 
+    opacity:0.6;         
 	}
 
   </style>
@@ -86,42 +86,42 @@
 
 <!-- Include der Navigationbar und des dazu gehörigen Styles -->
   <?php
-    include("include/navigationbar.html");
+    include("navigationbar.html");
   ?>
 
   <article style="float:left; margin-left:30%; margin-top:60px">
     <div class="difficulty">
       <a href="Spiel.php?d=1">
-        <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRsOUswpN22OQbjuhfnP-SZb4-B4zam9kVu1Al1T5QDie4ItXTH" alt="Trolltunga Norway" width="400" height="400">
+        <img src="pictures/Leicht.png" alt="Trolltunga Norway" width="400" height="400">
       </a>
-      <div class="desc" style="color:white">Leicht</div>
+      <div class="desc" style="color:white">Schwierigkeitsgrad: Leicht</div>
     </div>
   </article>
 
   <article style="float:right; margin-right:30%; margin-top:60px">
     <div class="difficulty">
       <a href="Spiel.php?d=2">
-        <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRsOUswpN22OQbjuhfnP-SZb4-B4zam9kVu1Al1T5QDie4ItXTH" alt="Forest" width="400" height="400">
+        <img src="pictures/Mittel.png" alt="Forest" width="400" height="400">
       </a>
-      <div class="desc" style="color:white">Mittel</div>
+      <div class="desc" style="color:white">Schwierigkeitsgrad: Mittel</div>
     </div>
   </article>
 
   <article style="float:left; display:block; margin-left:30%; margin-top:20px">
     <div class="difficulty">
       <a href="Spiel.php?d=3">
-        <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRsOUswpN22OQbjuhfnP-SZb4-B4zam9kVu1Al1T5QDie4ItXTH" alt="Northern Lights" width="400" height="400">
+        <img src="pictures/Schwer.png" alt="Northern Lights" width="400" height="400">
       </a>
-      <div class="desc" style="color:white">Schwer</div>
+      <div class="desc" style="color:white">Schwierigkeitsgrad: Schwer</div>
     </div>
   </article>
 
   <article style="float:right; display:block; margin-right:30%; margin-top:20px">
     <div class="difficulty">
       <a href="Spiel.php?d=4">
-        <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRsOUswpN22OQbjuhfnP-SZb4-B4zam9kVu1Al1T5QDie4ItXTH" alt="Mountains" width="400" height="400">
+        <img src="pictures/Extrem.png" alt="Mountains" width="400" height="400">
       </a>
-      <div class="desc" style="color:white">Extrem</div>
+      <div class="desc" style="color:white">Schwierigkeitsgrad: Extrem</div>
     </div>
   </article>
 

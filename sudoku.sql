@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 11. Mai 2017 um 11:00
+-- Erstellungszeit: 14. Mai 2017 um 17:46
 -- Server-Version: 10.1.21-MariaDB
--- PHP-Version: 7.1.1
+-- PHP-Version: 7.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -44,14 +44,9 @@ CREATE TABLE `nutzer` (
 --
 
 INSERT INTO `nutzer` (`NutzerID`, `Nutzername`, `EchterName`, `NutzerPW`, `Mail`, `verifiziert`, `Geschlecht`, `RegistriertSeit`, `SpielerID`, `Status`) VALUES
-(1, 'admin', 'admin', '$2y$10$hmRQK8aEo.Gl0s.OixIX9.0ifakjz1Ht4QLrcP4qBAeAmNf8718.m', 'g@web.de', 1, 'männlich', '2017-05-10 10:06:24', 1, NULL),
-(2, 'Daxter', 'Jan', '$2y$10$P/LNeCde6Lk6o3WknZMgve2eUjnevy53SSmqNNjEPS99QIWifAA12', 'jan.getschmann@web.de', 1, 'männlich', '2017-05-10 13:23:59', 2, NULL),
-(3, 'pizza', 'pizza', '$2y$10$wPQzdPn7ONj1jSJKQuguIu5kSR6Eo9Or2JwtNcVTKjc.e8lCoMspG', 'g@gaa.de', 1, 'männlich', '2017-05-10 14:31:13', 3, NULL),
-(4, 'ayy', 'ayy', '$2y$10$cc2RKl6CxJ06vb3I9Z6ACu24vMaPaxpb/ckivrE4XVSmXEDXWU3de', 'g@ere.de', 1, 'männlich', '2017-05-10 15:07:44', 4, NULL),
-(5, 'boss', 'boss', '$2y$10$zbL32W/9WRRvX62WZX08luqo8eAWS0J3hJ4iKT7A2RQECNdnyKa9O', 'gt@p.de', 1, 'männlich', '2017-05-10 15:10:19', 5, NULL),
-(6, 'tzz', 'tzz', '$2y$10$BQ8eS2wMjqA5zJRNOZTqJ.ak40.OUucJ0LFfRHM50kEFq2Jvgi3aC', 'g@tzz.de', 1, 'männlich', '2017-05-11 08:01:43', 6, NULL),
-(7, 'aya', 'aya', '$2y$10$rHeLjbiQiv7AIQC1bTm.ZOZD8gA2tIopOhBMoTe4LJOR1I2sHyOUq', 'g@gsgs.de', 1, 'männlich', '2017-05-11 08:36:36', 7, NULL),
-(8, 'gaga', 'gagag', '$2y$10$apZTa7S3yp.yAIyiEQk65.5BboMFEKQmceur9m6DI8SRbmjG.dPKG', 'ggtt@t.de', 1, 'männlich', '2017-05-11 08:38:31', 8, NULL);
+(1, 'admin', 'admin', '$2y$10$Jw1c/BqjfnHgbiTIvJ.bluddAno2BCwbgQMS0f2gFlmc3//I6oQ.C', 'admin@admin.de', 1, 'männlich', '2017-05-14 13:41:34', 1, '  BOSS'),
+(2, 'peter', 'Peter', '$2y$10$2fQG6Ws7HbDUNKEI1i1XluUdBf0yB67Ps0wYhO7HHyNCs/DetGH06', 'peter@hsw.de', 1, 'männlich', '2017-05-14 14:35:30', 2, NULL),
+(3, 'Hans', 'Hans', '$2y$10$yBNPfs6XI3FnE9MGWJWcC.tOJp0R7JnMoy.cm16krN3eShvY2qSWC', 'Hans@yo.de', 1, 'männlich', '2017-05-14 14:36:17', 3, NULL);
 
 --
 -- Trigger `nutzer`
@@ -81,10 +76,10 @@ CREATE TABLE `spiele` (
   `gewSpieleMittel` int(6) DEFAULT '0',
   `gewSpieleSchwer` int(6) DEFAULT '0',
   `gewSpieleExtrem` int(6) DEFAULT '0',
-  `zeitLeicht` double DEFAULT '0',
-  `zeitMittel` double DEFAULT '0',
-  `zeitSchwer` double DEFAULT '0',
-  `zeitExtrem` double DEFAULT '0',
+  `zeitLeicht` double DEFAULT '999999',
+  `zeitMittel` double DEFAULT '999999',
+  `zeitSchwer` double DEFAULT '999999',
+  `zeitExtrem` double DEFAULT '999999',
   `Elo` int(5) NOT NULL DEFAULT '1000',
   `DuelleGew` int(6) DEFAULT '0',
   `DuelleGes` int(6) DEFAULT '0'
@@ -95,14 +90,9 @@ CREATE TABLE `spiele` (
 --
 
 INSERT INTO `spiele` (`SpielerID`, `gewSpiele`, `gewSpieleLeicht`, `gewSpieleMittel`, `gewSpieleSchwer`, `gewSpieleExtrem`, `zeitLeicht`, `zeitMittel`, `zeitSchwer`, `zeitExtrem`, `Elo`, `DuelleGew`, `DuelleGes`) VALUES
-(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 0, 0),
-(2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 0, 0),
-(3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 0, 0),
-(4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 0, 0),
-(5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 0, 0),
-(6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 0, 0),
-(7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 0, 0),
-(8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 0, 0);
+(1, 4, 1, 1, 1, 1, 9, 8, 8, 5, 1000, 0, 0),
+(2, 4, 1, 1, 1, 1, 50, 50, 50, 50, 1000, 0, 0),
+(3, 5, 2, 1, 1, 1, 30, 30, 30, 30, 1000, 0, 0);
 
 --
 -- Indizes der exportierten Tabellen
@@ -128,12 +118,12 @@ ALTER TABLE `spiele`
 -- AUTO_INCREMENT für Tabelle `nutzer`
 --
 ALTER TABLE `nutzer`
-  MODIFY `NutzerID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `NutzerID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT für Tabelle `spiele`
 --
 ALTER TABLE `spiele`
-  MODIFY `SpielerID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `SpielerID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

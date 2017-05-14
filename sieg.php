@@ -60,7 +60,7 @@
 	}
 
 
-	include("include/navigationbar.html");
+	include("navigationbar.html");
 	
 	
 	
@@ -86,7 +86,7 @@
   
   <?PHP
   
-  require_once('dbconfig.php');
+  require_once('include/dbconfig.php');
   
   
   if(isset($_SESSION['eingeloggt']) && $_SESSION['eingeloggt'])
