@@ -25,6 +25,7 @@ require_once('passwords.php');
 		{
 			$_SESSION['eingeloggt']=true;
 			$_SESSION['userid'] = $user['NutzerID'];
+			$_SESSION['spielerid'] = $user['SpielerID'];
 			$_SESSION['nutzername']=utf8_encode($user['Nutzername']);
 			$_SESSION['name']=utf8_encode($user['EchterName']);
 			$_SESSION['geschlecht']=utf8_encode($user['Geschlecht']);
@@ -34,7 +35,8 @@ require_once('passwords.php');
 			
 			$_SESSION['verifiziert']=$user['verifiziert'];
 			$_SESSION['verify'] = rand(10000,99999);
-			$_SESSION['gewSpieleLeicht']=$user['gewSpieleLeicht'];
+			$_SESSION['gewSpiele']=$user['gewSpieleLeicht'];
+			$_SESSION['gewSpieleLeicht']=$user['gewSpiele'];
 			$_SESSION['gewSpieleMittel']=$user['gewSpieleMittel'];
 			$_SESSION['gewSpieleSchwer']=$user['gewSpieleSchwer'];
 			$_SESSION['gewSpieleExtrem']=$user['gewSpieleExtrem'];

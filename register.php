@@ -153,6 +153,7 @@ if(isset($_POST['register']))
 		
 			$_SESSION['eingeloggt']=true;
 			$_SESSION['userid'] = $user['NutzerID'];
+			$_SESSION['spielerid'] = $user['SpielerID'];
 			$_SESSION['nutzername']=utf8_encode($user['Nutzername']);
 			$_SESSION['name']=utf8_encode($user['EchterName']);
 			$_SESSION['geschlecht']=utf8_encode($user['Geschlecht']);

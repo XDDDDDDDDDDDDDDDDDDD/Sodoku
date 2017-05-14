@@ -120,7 +120,7 @@
 
 	session_start();
 	
-	const EASY = 79;
+	const EASY = 48;
 	const MEDIUM = 38;
 	const HARD = 26;
 	const EXTREME = 15;
@@ -152,7 +152,7 @@
 			$post=microtime(true);
 			$time=$post-$_SESSION['pre'];
 			unset($_SESSION['pre']);
-			$_SESSION['time']=$time;
+			$_SESSION['time']=intval($time);
 			
 			header('Location: sieg.php');
 			
@@ -536,7 +536,7 @@ if($setField)
 		
 	}
 	
-	echo '<td>Da war was falsch... versuchs nochmal :)</td>';
+	echo '<td><font color="red">Das war nicht korrekt...versucht nochmal :)</font></td>';
 	
 }
 
