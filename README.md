@@ -9,3 +9,6 @@ Installationsanleitung:
 3.5 Evtl in der dbconfig.php Nutzername oder Passwort nachtragen
 4. Über die Apache Adminseite die Start.php aufrufen
 5. Registrieren/anmelden/Spielen etc.
+
+Dokumentation und eine ausführlichere Anleitung 
+sind in dem ordner "doku"
