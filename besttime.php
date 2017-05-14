@@ -39,6 +39,11 @@
       width: 300px;
       height: 500px;
     }
+	
+	.disabled {
+    pointer-events:none; 
+    opacity:0.6;         
+	}
 
   </style>
 <body>
