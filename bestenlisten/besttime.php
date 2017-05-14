@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-
-<!-- In dieser Datei wird die Seite erstellt, auf der die User mit den am schnellsten gelösten Sudokus ausgegeben werden. -->
 <html>
 <head>
   <style>
@@ -30,16 +28,16 @@
     }
 
     td, th {
-    padding: 5px;
-    border-right: 1px solid white;
-    border-bottom:  1px solid white;
+    padding: 20px;
+    border-right: 2px solid white;
+    border-bottom:  2px solid white;
     }
 
     div.scroll{
       color:white;
       overflow: scroll;
       width: 300px;
-      height: 600px;
+      height: 500px;
     }
 
   </style>
@@ -49,35 +47,54 @@
 
 	session_start();
 
-?>
+ require_once('dbconfig.php');
 
-<!-- In dem Header wird der Name der Seite angezeigt und die Möglichkeit geboten sich auszuloggen. --> 
-  <header>
-    <form action="logout.php" method="POST" style=" float: right; margin-top:5px; margin-right:20px">
-      <button type="submit" name=logout id=logout> Logout </button>
-    </form>
-    <div style="width: 1900px; border-bottom: 2px solid white;">
-      <h1> Sudoku Online </h1>
-      <p  style="text-align: right; margin-top:-55px; margin-right:75px; font-size:120%"> Hallo <?php echo $_SESSION['name']; ?> !</p>
-    </div>
-  </header>
+if(isset($_SESSION['eingeloggt']) && $_SESSION['eingeloggt'])
+	{
+		include('header/headerLogout.html');
 
-<!-- Include der Navigationbar und des dazu gehörigen Styles -->
-  <?php
-    include("include/navigationbar.html");
+		if($_SESSION['verifiziert']==false)
+		{
+			include('header/headerVeri.html');
+		}
+
+	}
+	else
+	{
+		include('header/headerLogin.php');
+	}
+
+
+	include("include/navigationbar.html");
+	
   ?>
 
   <h1 style="color:white; text-align: center"> Bestenliste Zeit </h1>
 
-<!-- Im Folgenden werden in einzelnen Tabellen, für die jeweiligen Schwierigkeitsgrade (Leicht, Mittel, Schwer, Extrem) ausgegeben.
-     Darin enthalten sind der Username und die Bestzeit. -->
+
+
   <div class="scroll" style="float:left; margin-left:7%; margin-top:60px">
     <h2> Leicht </h2>
     <table style="width:auto; text-align:left">
-      <tr>
-        <th> Username </th>
-        <td> <?php echo $_SESSION['durchZeitLeicht']; ?> </td>
-      </tr>
+	<tr>
+        <th> Name </th>
+        <th> Zeit </th>
+    </tr>
+	  <?PHP
+			
+			$statement = $pdo->prepare("SELECT nutzer.EchterName, spiele.zeitLeicht FROM nutzer, spiele WHERE nutzer.SpielerID=spiele.SpielerID AND spiele.zeitLeicht<999999 ORDER BY spiele.zeitLeicht asc");
+			$result = $statement->execute();
+			$liste = $statement->fetchAll();
+			
+			
+			foreach($liste as $row)
+			{
+				echo "<tr>";
+				echo '<td><a href="visitprofile.php?u="'.$row["EchterName"].'" style="color:white">'. $row["EchterName"] . '</a></td>';
+				echo '<td>'. $row["zeitLeicht"] . '</td>';
+				echo "</tr>";
+			}
+	  ?>
     </table>
   </div>
 
@@ -85,19 +102,49 @@
     <h2> Mittel </h2>
     <table style="width:auto; text-align:left">
       <tr>
-        <th> Username </th>
-        <td> <?php echo $_SESSION['durchZeitLeicht']; ?> </td>
-      </tr>
+        <th> Name </th>
+        <th> Zeit </th>
+    </tr>
+	  <?PHP
+			
+			$statement = $pdo->prepare("SELECT nutzer.EchterName, spiele.zeitMittel FROM nutzer, spiele WHERE nutzer.SpielerID=spiele.SpielerID AND spiele.zeitMittel<999999 ORDER BY spiele.zeitLeicht asc");
+			$result = $statement->execute();
+			$liste = $statement->fetchAll();
+			
+			
+			foreach($liste as $row)
+			{
+				echo "<tr>";
+				echo '<td><a href="visitprofile.php?u="'.$row["EchterName"].'" style="color:white">'. $row["EchterName"] . '</a></td>';
+				echo '<td>'. $row["zeitMittel"] . '</td>';
+				echo "</tr>";
+			}
+	  ?>
     </table>
   </div>
 
   <div class="scroll" style="float:left; display:block; margin-left:7%; margin-top:60px">
     <h2> Schwer </h2>
     <table style="width:auto; text-align:left">
-      <tr>
-        <th> Username </th>
-        <td> <?php echo $_SESSION['durchZeitLeicht']; ?> </td>
-      </tr>
+     <tr>
+        <th> Name </th>
+        <th> Zeit </th>
+    </tr>
+	  <?PHP
+			
+			$statement = $pdo->prepare("SELECT nutzer.EchterName, spiele.zeitSchwer FROM nutzer, spiele WHERE nutzer.SpielerID=spiele.SpielerID AND spiele.zeitSchwer<999999 ORDER BY spiele.zeitLeicht asc");
+			$result = $statement->execute();
+			$liste = $statement->fetchAll();
+			
+			
+			foreach($liste as $row)
+			{
+				echo "<tr>";
+				echo '<td><a href="visitprofile.php?u="'.$row["EchterName"].'" style="color:white">'. $row["EchterName"] . '</a></td>';
+				echo '<td>'. $row["zeitSchwer"] . '</td>';
+				echo "</tr>";
+			}
+	  ?>
     </table>
   </div>
 
@@ -105,13 +152,29 @@
     <h2> Extrem </h2>
     <table style="width:auto; text-align:left">
       <tr>
-        <th> Username </th>
-        <td> <?php echo $_SESSION['durchZeitLeicht']; ?> </td>
-      </tr>
+        <th> Name </th>
+        <th> Zeit </th>
+    </tr>
+	  <?PHP
+			
+			$statement = $pdo->prepare("SELECT nutzer.EchterName, spiele.zeitExtrem FROM nutzer, spiele WHERE nutzer.SpielerID=spiele.SpielerID AND spiele.zeitExtrem<999999 ORDER BY spiele.zeitLeicht asc");
+			$result = $statement->execute();
+			$liste = $statement->fetchAll();
+			
+			
+			foreach($liste as $row)
+			{
+				echo "<tr>";
+				echo '<td><a href="visitprofile.php?u="'.$row["EchterName"].'" style="color:white">'. $row["EchterName"] . '</a></td>';
+				echo '<td>'. $row["zeitExtrem"] . '</td>';
+				echo "</tr>";
+			}
+	  ?>
     </table>
   </div>
 
-<!-- Ausgabe der Fußzeile, in der Unternehmensinformationen enthalten sind. -->
+
+
   <footer style="position: absolute; bottom: 5px">
     Copyright &copy; Getschmann, Kracht, Kuessner </br>
     31789 Hameln Sudoku für Dummies GmbH </br>
