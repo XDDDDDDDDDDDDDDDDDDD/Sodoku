@@ -100,11 +100,11 @@ session_start();
         <table style="width:100%; text-align: left; font-size: 110%">
           <tr>
             <th> <label for="uname" >Username</label> </th>
-            <td> <input type="text" id="uname" name=uname float:right> </td>
+            <td> <input type="text" id="uname" name=uname float:right pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{2,20}$"> </td>
           </tr>
           <tr>
-            <th> <label for="name" >Name   </label> </th>
-            <td> <input type="text" id="name" name=name> </td>
+            <th> <label for="name" >Anzeigename</label> </th>
+            <td> <input type="text" id="name" name=name pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$"> </td>
           </tr>
           <tr>
             <th> Geschlecht </th>
