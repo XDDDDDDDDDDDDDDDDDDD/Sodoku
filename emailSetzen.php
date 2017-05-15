@@ -8,7 +8,7 @@
 <?PHP                     //Wird vom Button des Modals aufgerufen, Ändert die E-Mail Adresse des Nutzers
 session_start();
 
-  require_once('dbconfig.php');
+  require_once('include/dbconfig.php');
   
   
   if(isset($_POST['aendern']))
